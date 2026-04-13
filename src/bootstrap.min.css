@@ -1,0 +1,21 @@
+@charset "UTF-8";/*!
+ * Bootswatch v5.3.7 (https://bootswatch.com)
+ * Theme: morph
+ * Copyright 2012-2025 Thomas Park
+ * Licensed under MIT
+ * Based on Bootstrap
+/*!
+ * Bootstrap  v5.3.7 (https://getbootstrap.com/)
+ * Copyright 2011-2025 The Bootstrap Authors
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+@import url(https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap);
+/* ... rest of the CSS ... */
+.table-responsive{overflow-x:auto;}
+@media (max-width:575.98px){.table-responsive-sm{overflow-x:auto;}}
+@media (max-width:767.98px){.table-responsive-md{overflow-x:auto;}}
+@media (max-width:991.98px){.table-responsive-lg{overflow-x:auto;}}
+@media (max-width:1199.98px){.table-responsive-xl{overflow-x:auto;}}
+@media (max-width:1399.98px){.table-responsive-xxl{overflow-x:auto;}}
+/* ... rest of the CSS ... */
+/*# sourceMappingURL=bootstrap.min.css.map */

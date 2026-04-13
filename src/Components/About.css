@@ -1,0 +1,199 @@
+@charset "UTF-8";
+/* =========================
+   🎨 COLOR SYSTEM
+========================= */
+/* =========================
+   🌌 SECTION
+========================= */
+.about {
+  background: linear-gradient(135deg, #020617, #071a12);
+  color: #ffffff;
+  padding: 60px 20px;
+}
+
+/* =========================
+   📦 CONTAINER
+========================= */
+.about-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* =========================
+   🧾 HEADER
+========================= */
+.about-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.about-header h2 {
+  font-size: 32px;
+  color: #f4b400;
+  margin-bottom: 10px;
+  animation: fadeDown 0.6s ease;
+}
+.about-header p {
+  color: #a0aec0;
+  font-size: 15px;
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.6;
+  animation: fadeUp 0.8s ease;
+}
+
+/* =========================
+   📊 CONTENT GRID
+========================= */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* =========================
+   📝 TEXT BOX
+========================= */
+.about-text {
+  background: #0b1f1a;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  animation: fadeLeft 0.7s ease;
+}
+.about-text p {
+  color: #a0aec0;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   ⭐ FEATURES BOX
+========================= */
+.about-features {
+  background: #0b1f1a;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  animation: fadeRight 0.7s ease;
+}
+.about-features h3 {
+  color: #f4b400;
+  margin-bottom: 12px;
+}
+.about-features ul {
+  padding-left: 18px;
+}
+.about-features li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #a0aec0;
+  line-height: 1.5;
+}
+.about-features li::marker {
+  color: #f4b400;
+}
+
+/* =========================
+   ✨ HOVER EFFECT
+========================= */
+.about-text:hover,
+.about-features:hover {
+  transform: translateY(-5px);
+  transition: 0.3s ease;
+}
+
+/* =========================
+   🎬 ANIMATIONS
+========================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* =========================
+   🖥 LARGE SCREEN
+========================= */
+@media (min-width: 1200px) {
+  .about-content {
+    gap: 40px;
+  }
+}
+/* =========================
+   📱 TABLET
+========================= */
+@media (max-width: 992px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+  .about-header h2 {
+    font-size: 28px;
+  }
+}
+/* =========================
+   📱 MOBILE
+========================= */
+@media (max-width: 576px) {
+  .about {
+    padding: 40px 15px;
+  }
+  .about-header h2 {
+    font-size: 24px;
+  }
+  .about-header p {
+    font-size: 14px;
+  }
+  .about-text,
+  .about-features {
+    padding: 18px;
+  }
+  .about-features li {
+    font-size: 13px;
+  }
+}
+/* =========================
+   📱 SMALL MOBILE
+========================= */
+@media (max-width: 360px) {
+  .about-header h2 {
+    font-size: 22px;
+  }
+  .about-text p {
+    font-size: 13px;
+  }
+}/*# sourceMappingURL=About.css.map */

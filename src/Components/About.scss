@@ -1,0 +1,156 @@
+.about {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* DARK OVERLAY */
+.overlay {
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* CONTAINER */
+.about-container {
+  max-width: 1100px;
+  margin: auto;
+  color: #fff;
+}
+
+/* HEADER */
+.about-header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: slideDown 1s ease;
+
+  h2 {
+    font-size: 2.6rem;
+    color: #f5c76b;
+    margin-bottom: 10px;
+  }
+
+  p {
+    max-width: 650px;
+    margin: auto;
+    color: #ddd;
+    line-height: 1.6;
+  }
+}
+
+/* CONTENT */
+.about-content {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* TEXT */
+.about-text {
+  flex: 1;
+  min-width: 280px;
+  animation: slideLeft 1s ease;
+
+  p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: #e5e5e5;
+  }
+}
+
+/* FEATURES (GLASS CARD) */
+.about-features {
+  flex: 1;
+  min-width: 280px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 15px;
+  padding: 25px;
+
+  animation: slideRight 1s ease;
+
+  h3 {
+    color: #f5c76b;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 12px;
+      padding-left: 20px;
+      position: relative;
+      transition: 0.3s;
+
+      &::before {
+        content: "✔";
+        position: absolute;
+        left: 0;
+        color: #f5c76b;
+      }
+
+      &:hover {
+        transform: translateX(6px);
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+  }
+
+  .about-header h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-header h2 {
+    font-size: 1.7rem;
+  }
+
+  .overlay {
+    padding: 40px 15px;
+  }
+}

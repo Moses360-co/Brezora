@@ -1,0 +1,155 @@
+$primary: #0f766e;
+$accent: #d4af37;
+
+/* NAVBAR */
+.navbar {
+  position: fixed;   /* ✅ fixed top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 24px;
+
+  /* 🌄 Transparent glass base */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+
+  transition: all 0.35s ease;
+}
+
+/* 🌟 STRONG GLASS ON SCROLL */
+.navbar.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* LEFT SIDE */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .brand {
+    h2 {
+      font-size: 18px;
+      color: white;
+      margin: 0;
+    }
+
+    p {
+      font-size: 12px;
+      cursor: pointer;
+      color: #fcfafa;
+
+      span {
+        color: $accent;
+      }
+
+      &:hover {
+        color: $primary;
+        transform: translateX(3px);
+      }
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+
+      a {
+        font-size: 12px;
+        text-decoration: none;
+        color: $primary;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: 0.3s;
+
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
+  }
+}
+
+/* MENU */
+.menu {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+
+  li {
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+    color: #f2f5f5;
+
+    &:hover {
+      color: $accent;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+/* TOGGLE */
+.toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $primary;
+}
+
+/* =======================
+   MOBILE RESPONSIVE
+======================= */
+@media (max-width: 768px) {
+  .toggle {
+    display: block;
+  }
+
+  .menu {
+    position: absolute;
+    top: 75px;
+    right: 18px;
+
+    flex-direction: column;
+
+    width: 220px;
+    padding: 18px;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+
+    border-radius: 14px;
+
+    opacity: 0;
+    transform: translateY(-15px);
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+
+  .menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
