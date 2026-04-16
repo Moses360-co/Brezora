@@ -1,149 +1,183 @@
-$primary: #0f766e;
 $accent: #d4af37;
 
-/* NAVBAR */
+/* ================= BACKGROUND ================= */
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #020617);
+  min-height: 100vh;
+}
+
+/* ================= NAVBAR ================= */
 .navbar {
-  position: fixed;   /* ✅ fixed top */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 1000;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 14px 24px;
+  padding: 12px 22px;
 
-  /* 🌄 Transparent glass base */
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
+  /* 🔥 GLASS EFFECT */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
 
-  transition: all 0.35s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+  transition: 0.3s ease;
 }
 
-/* 🌟 STRONG GLASS ON SCROLL */
+/* ON SCROLL */
 .navbar.glass {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(30px) saturate(200%);
 }
 
-/* LEFT SIDE */
+/* ================= LEFT ================= */
 .left {
   display: flex;
   align-items: center;
-  gap: 12px;
-
-  .logo img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
-  .brand {
-    h2 {
-      font-size: 18px;
-      color: white;
-      margin: 0;
-    }
-
-    p {
-      font-size: 12px;
-      cursor: pointer;
-      color: #fcfafa;
-
-      span {
-        color: $accent;
-      }
-
-      &:hover {
-        color: $primary;
-        transform: translateX(3px);
-      }
-    }
-
-    .actions {
-      display: flex;
-      gap: 12px;
-
-      a {
-        font-size: 12px;
-        text-decoration: none;
-        color: $primary;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        transition: 0.3s;
-
-        &:hover {
-          color: $accent;
-        }
-      }
-    }
-  }
+  gap: 10px;
+  cursor: pointer;
 }
 
-/* MENU */
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.brand {
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ================= MENU ================= */
 .menu {
   display: flex;
   gap: 22px;
   list-style: none;
-
-  li {
-    cursor: pointer;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: 0.3s;
-    color: #f2f5f5;
-
-    &:hover {
-      color: $accent;
-      transform: translateY(-2px);
-    }
-  }
 }
 
-/* TOGGLE */
+.menu li {
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  transition: 0.25s;
+  position: relative;
+}
+
+.menu li:hover {
+  color: $accent;
+  transform: translateY(-2px);
+}
+
+/* underline hover effect */
+.menu li::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: $accent;
+  transition: 0.3s;
+}
+
+.menu li:hover::after {
+  width: 100%;
+}
+
+/* ================= ACTIONS ================= */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.actions a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #fff;
+  text-decoration: none;
+
+  padding: 6px 10px;
+  border-radius: 20px;
+
+  transition: 0.3s;
+}
+
+.actions a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* CALL BUTTON */
+.call-btn {
+  background: rgba(255,255,255,0.18);
+}
+
+.call-btn:hover {
+  background: $accent;
+  color: #000;
+}
+
+/* ================= TOGGLE ================= */
 .toggle {
   display: none;
   font-size: 24px;
   background: none;
   border: none;
+  color: #fff;
   cursor: pointer;
-  color: $primary;
 }
 
-/* =======================
-   MOBILE RESPONSIVE
-======================= */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
   .toggle {
     display: block;
   }
 
+  /* hide desktop menu layout */
   .menu {
-    position: absolute;
-    top: 75px;
-    right: 18px;
+    position: fixed;
+    top: 70px;
+    right: 16px;
 
-    flex-direction: column;
-
-    width: 220px;
+    width: 240px;
     padding: 18px;
 
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(20px);
+    flex-direction: column;
+    gap: 14px;
 
     border-radius: 14px;
 
+    /* stronger glass for mobile */
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(28px) saturate(200%);
+    -webkit-backdrop-filter: blur(28px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+
     opacity: 0;
-    transform: translateY(-15px);
+    transform: translateY(-12px);
     pointer-events: none;
+
     transition: 0.3s ease;
   }
 
@@ -151,5 +185,20 @@ $accent: #d4af37;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+  }
+
+  .actions span {
+    display: none;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px) {
+  .brand {
+    font-size: 14px;
+  }
+
+  .menu {
+    width: 200px;
   }
 }

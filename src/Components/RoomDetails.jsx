@@ -5,7 +5,6 @@ const RoomDetails = ({ room, onBack }) => {
   const images = [room.image, ...(room.gallery || [])];
   const [current, setCurrent] = useState(0);
 
-  // AUTO SLIDE (3 seconds)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
@@ -17,7 +16,7 @@ const RoomDetails = ({ room, onBack }) => {
   return (
     <section className="room-details">
       <button className="back-btn" onClick={onBack}>
-        Back to Rooms
+        Back to Home 
       </button>
 
       <header className="room-header">
@@ -25,19 +24,16 @@ const RoomDetails = ({ room, onBack }) => {
         <p className="room-time">{room.time}</p>
       </header>
 
-      {/* AUTO SLIDER */}
+      {/* SLIDER */}
       <div className="auto-slider">
         <div
           className="slider-track"
           style={{ transform: `translateX(-${current * 100}%)` }}
         >
           {images.map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              alt={`${room.title} ${index + 1}`}
-              className="slide-img"
-            />
+            <div className="slide" key={index}>
+              <img src={img} alt="" className="slide-img" />
+            </div>
           ))}
         </div>
       </div>
@@ -47,7 +43,7 @@ const RoomDetails = ({ room, onBack }) => {
         {images.map((_, index) => (
           <span
             key={index}
-            className={index === current ? "dot active" : "dot"}
+            className={`dot ${index === current ? "active" : ""}`}
             onClick={() => setCurrent(index)}
           />
         ))}
@@ -60,7 +56,7 @@ const RoomDetails = ({ room, onBack }) => {
 
         <a
           className="book-btn"
-          href={`https://wa.me/${room.phone}?text=Hello, I want to book the ${room.title}`}
+          href={`https://wa.me/${room.phone}?text=Hello, I want to book ${room.title}`}
           target="_blank"
           rel="noopener noreferrer"
         >

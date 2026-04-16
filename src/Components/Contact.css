@@ -1,86 +1,197 @@
+@charset "UTF-8";
 .contact {
-  background-color: #FAF7F2;
+  min-height: 100vh;
   padding: 60px 20px;
-  color: #1F2933;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 1s ease;
+  /* 🌑 OVERLAY */
+}
+.contact .overlay {
+  background: rgba(0, 0, 0, 0.65);
+  padding: 50px 20px;
+  min-height: 100vh;
 }
 
 .contact-container {
   max-width: 1100px;
-  margin: 0 auto;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 40px;
+  color: #fff;
 }
 
+/* HEADER */
 .contact-header {
   text-align: center;
+  animation: slideDown 1s ease;
 }
 .contact-header h2 {
-  color: #0F766E;
+  color: #d4af37;
   margin-bottom: 12px;
+  font-size: 2.5rem;
 }
 .contact-header p {
   max-width: 700px;
-  margin: 0 auto;
+  margin: auto;
+  color: #ddd;
 }
 
+/* CONTENT */
 .contact-content {
   display: flex;
   gap: 40px;
+  flex-wrap: wrap;
 }
 
+/* INFO CARD */
 .contact-info {
   flex: 1;
-  background-color: white;
-  padding: 24px;
-  border-left: 4px solid #D4AF37;
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 25px;
+  border-radius: 15px;
+  animation: slideLeft 1s ease;
 }
 .contact-info h3 {
-  color: #5C4033;
+  color: #d4af37;
   margin-bottom: 12px;
 }
 .contact-info p {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  color: #ddd;
 }
 
+/* FORM CARD */
 .contact-form {
   flex: 1;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
   gap: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 25px;
+  border-radius: 15px;
+  animation: slideRight 1s ease;
 }
 .contact-form input,
 .contact-form textarea {
-  padding: 10px 12px;
-  border: 1px solid rgb(115.6829268293, 143, 170.3170731707);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #fff;
   outline: none;
-  font-family: inherit;
+}
+.contact-form input::-moz-placeholder, .contact-form textarea::-moz-placeholder {
+  color: #ccc;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #ccc;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #d4af37;
 }
 .contact-form textarea {
   min-height: 120px;
-  resize: vertical;
 }
 .contact-form button {
-  margin-top: 8px;
+  margin-top: 10px;
   padding: 12px;
-  background-color: #0F766E;
-  color: white;
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  color: #fff;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
+  transition: 0.3s;
 }
 .contact-form button:hover {
-  background-color: rgb(10.3984962406, 81.8015037594, 76.2556390977);
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(20, 184, 166, 0.5);
 }
 
+/* SUCCESS */
 .success-msg {
-  margin-top: 12px;
-  color: green;
+  margin-top: 10px;
+  color: #4ade80;
   font-weight: 600;
 }
 
-/* Responsive */
+/* ======================
+   ANIMATIONS
+====================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* ======================
+   RESPONSIVE
+====================== */
+/* Tablet */
+@media (max-width: 992px) {
+  .contact-header h2 {
+    font-size: 2.2rem;
+  }
+}
+/* Mobile */
 @media (max-width: 768px) {
   .contact-content {
     flex-direction: column;
+  }
+  .contact-form,
+  .contact-info {
+    animation: fadeIn 0.8s ease;
+  }
+}
+/* Small Mobile */
+@media (max-width: 480px) {
+  .contact-header h2 {
+    font-size: 1.8rem;
+  }
+  .contact-form button {
+    font-size: 14px;
   }
 }/*# sourceMappingURL=Contact.css.map */

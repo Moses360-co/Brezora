@@ -2,54 +2,39 @@ import React, { useState, useEffect } from "react";
 import "./Navbar.scss";
 import BrezoraLogo from "./BrezoraLogo.png";
 
-import { FaHome, FaInfoCircle, FaConciergeBell, FaTimes, FaBars } from "react-icons/fa";
+import {
+  FaHome,
+  FaInfoCircle,
+  FaConciergeBell,
+  FaBars,
+  FaTimes,
+  FaPhoneVolume
+} from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
-import { FaPhoneVolume } from "react-icons/fa6";
 
 function NavBar({ setPage }) {
   const [open, setOpen] = useState(false);
-  const [glass, setGlass] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const handleClick = (page) => {
-    setPage(page);
+    if (setPage) setPage(page);
     setOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
-    const onScroll = () => {
-      setGlass(window.scrollY > 40);
-    };
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav className={`navbar ${glass ? "glass" : ""}`}>
+    <nav className={`navbar ${scrolled ? "glass" : ""}`}>
 
       {/* LEFT */}
-      <div className="left">
-        <div className="logo">
-          <img src={BrezoraLogo} alt="logo" />
-        </div>
-
-        <div className="brand">
-          <h2>BREEZORA</h2>
-
-          <p onClick={() => handleClick("services")}>
-            STAY <span>/</span> FOOD <span>/</span> TRAVEL <span>/</span> JEEP RIDE
-          </p>
-
-          <div className="actions">
-            <a href="https://www.google.com/maps" target="_blank" rel="noreferrer">
-              <CiLocationOn /> Location
-            </a>
-
-            <a href="tel:+918124582703">
-              <FaPhoneVolume /> Contact
-            </a>
-          </div>
-        </div>
+      <div className="left" onClick={() => handleClick("home")}>
+        <img src={BrezoraLogo} alt="logo" className="logo" />
+        <h2 className="brand">BREZORA</h2>
       </div>
 
       {/* MENU */}
@@ -60,10 +45,26 @@ function NavBar({ setPage }) {
         <li onClick={() => handleClick("contact")}><FaPhoneVolume /> Contact</li>
       </ul>
 
-      {/* MOBILE BUTTON */}
-      <button className="toggle" onClick={() => setOpen(!open)}>
-        {open ? <FaTimes /> : <FaBars />}
-      </button>
+      {/* RIGHT */}
+      <div className="actions">
+        <a href="https://maps.google.com" target="_blank" rel="noreferrer">
+          <CiLocationOn /> <span>Location</span>
+        </a>
+
+        <a href="tel:+918124582703" className="call-btn">
+          <FaPhoneVolume /> <span>Call</span>
+        </a>
+
+        <button
+          className="toggle"
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen(!open);
+          }}
+        >
+          {open ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
 
     </nav>
   );

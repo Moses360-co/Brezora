@@ -1,199 +1,160 @@
 @charset "UTF-8";
-/* =========================
-   🎨 COLOR SYSTEM
-========================= */
-/* =========================
-   🌌 SECTION
-========================= */
 .about {
-  background: linear-gradient(135deg, #020617, #071a12);
-  color: #ffffff;
-  padding: 60px 20px;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* =========================
-   📦 CONTAINER
-========================= */
+/* DARK OVERLAY */
+.overlay {
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* CONTAINER */
 .about-container {
   max-width: 1100px;
   margin: auto;
+  color: #fff;
 }
 
-/* =========================
-   🧾 HEADER
-========================= */
+/* HEADER */
 .about-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  animation: slideDown 1s ease;
 }
 .about-header h2 {
-  font-size: 32px;
-  color: #f4b400;
+  font-size: 2.6rem;
+  color: #f5c76b;
   margin-bottom: 10px;
-  animation: fadeDown 0.6s ease;
 }
 .about-header p {
-  color: #a0aec0;
-  font-size: 15px;
-  max-width: 600px;
+  max-width: 650px;
   margin: auto;
+  color: #ddd;
   line-height: 1.6;
-  animation: fadeUp 0.8s ease;
 }
 
-/* =========================
-   📊 CONTENT GRID
-========================= */
+/* CONTENT */
 .about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
-/* =========================
-   📝 TEXT BOX
-========================= */
+/* TEXT */
 .about-text {
-  background: #0b1f1a;
-  padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  animation: fadeLeft 0.7s ease;
+  flex: 1;
+  min-width: 280px;
+  animation: slideLeft 1s ease;
 }
 .about-text p {
-  color: #a0aec0;
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+  line-height: 1.7;
+  color: #e5e5e5;
 }
 
-/* =========================
-   ⭐ FEATURES BOX
-========================= */
+/* FEATURES (GLASS CARD) */
 .about-features {
-  background: #0b1f1a;
+  flex: 1;
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 15px;
   padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  animation: fadeRight 0.7s ease;
+  animation: slideRight 1s ease;
 }
 .about-features h3 {
-  color: #f4b400;
-  margin-bottom: 12px;
+  color: #f5c76b;
+  margin-bottom: 15px;
 }
 .about-features ul {
-  padding-left: 18px;
+  list-style: none;
+  padding: 0;
 }
-.about-features li {
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #a0aec0;
-  line-height: 1.5;
+.about-features ul li {
+  margin-bottom: 12px;
+  padding-left: 20px;
+  position: relative;
+  transition: 0.3s;
 }
-.about-features li::marker {
-  color: #f4b400;
+.about-features ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #f5c76b;
+}
+.about-features ul li:hover {
+  transform: translateX(6px);
+  color: #fff;
 }
 
-/* =========================
-   ✨ HOVER EFFECT
-========================= */
-.about-text:hover,
-.about-features:hover {
-  transform: translateY(-5px);
-  transition: 0.3s ease;
-}
-
-/* =========================
-   🎬 ANIMATIONS
-========================= */
-@keyframes fadeUp {
+/* ANIMATIONS */
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-@keyframes fadeDown {
+@keyframes slideLeft {
   from {
     opacity: 0;
-    transform: translateY(-25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes fadeLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-50px);
   }
   to {
     opacity: 1;
     transform: translateX(0);
   }
 }
-@keyframes fadeRight {
+@keyframes slideRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(50px);
   }
   to {
     opacity: 1;
     transform: translateX(0);
   }
 }
-/* =========================
-   🖥 LARGE SCREEN
-========================= */
-@media (min-width: 1200px) {
+/* RESPONSIVE */
+@media (max-width: 768px) {
   .about-content {
-    gap: 40px;
-  }
-}
-/* =========================
-   📱 TABLET
-========================= */
-@media (max-width: 992px) {
-  .about-content {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
   .about-header h2 {
-    font-size: 28px;
+    font-size: 2rem;
   }
 }
-/* =========================
-   📱 MOBILE
-========================= */
-@media (max-width: 576px) {
-  .about {
+@media (max-width: 480px) {
+  .about-header h2 {
+    font-size: 1.7rem;
+  }
+  .overlay {
     padding: 40px 15px;
-  }
-  .about-header h2 {
-    font-size: 24px;
-  }
-  .about-header p {
-    font-size: 14px;
-  }
-  .about-text,
-  .about-features {
-    padding: 18px;
-  }
-  .about-features li {
-    font-size: 13px;
-  }
-}
-/* =========================
-   📱 SMALL MOBILE
-========================= */
-@media (max-width: 360px) {
-  .about-header h2 {
-    font-size: 22px;
-  }
-  .about-text p {
-    font-size: 13px;
   }
 }/*# sourceMappingURL=About.css.map */
