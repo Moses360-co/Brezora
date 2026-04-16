@@ -40,9 +40,10 @@ function Footer() {
           <div className="card">
             <h3>Follow Us</h3>
             <div className="social">
-              <a href="#"><CiFacebook /> Facebook</a>
-              <a href="#"><IoLogoInstagram /> Instagram</a>
-              <a href="#"><CiLocationOn /> Location</a>
+              <a href="https://facebook.com" target="_blank" rel="noreferrer"><CiFacebook /> Facebook</a>
+              
+              <a href="https://instagram.com" target="_blank" rel="noreferrer"><IoLogoInstagram /> Instagram</a>
+              <a href="https://google.com" target="_blank" rel="noreferrer"><CiLocationOn /> Location</a>
             </div>
           </div>
 
