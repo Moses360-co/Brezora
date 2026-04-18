@@ -13,59 +13,90 @@ import {
 import { CiLocationOn } from "react-icons/ci";
 
 function NavBar({ setPage }) {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isGlass, setIsGlass] = useState(false);
 
-  const handleClick = (page) => {
-    if (setPage) setPage(page);
-    setOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
+  // 🔥 handle scroll for glass effect
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => {
+      if (window.scrollY > 20) {
+        setIsGlass(true);
+      } else {
+        setIsGlass(false);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return (
-    <nav className={`navbar ${scrolled ? "glass" : ""}`}>
+  // 🔥 handle navigation click
+  const handleNav = (page) => {
+    if (setPage) setPage(page);
+    setMenuOpen(false);
 
-      {/* LEFT */}
-      <div className="left" onClick={() => handleClick("home")}>
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+  return (
+    <nav className={`navbar ${isGlass ? "glass" : ""}`}>
+      
+      {/* LEFT - LOGO */}
+      <div className="left" onClick={() => handleNav("home")}>
         <img src={BrezoraLogo} alt="logo" className="logo" />
         <h2 className="brand">BREZORA</h2>
       </div>
 
-      {/* MENU */}
-      <ul className={`menu ${open ? "open" : ""}`}>
-        <li onClick={() => handleClick("home")}><FaHome /> Home</li>
-        <li onClick={() => handleClick("about")}><FaInfoCircle /> About</li>
-        <li onClick={() => handleClick("services")}><FaConciergeBell /> Services</li>
-        <li onClick={() => handleClick("contact")}><FaPhoneVolume /> Contact</li>
+      {/* CENTER MENU */}
+      <ul className={`menu ${menuOpen ? "open" : ""}`}>
+        <li onClick={() => handleNav("home")}>
+          <FaHome /> Home
+        </li>
+
+        <li onClick={() => handleNav("about")}>
+          <FaInfoCircle /> About
+        </li>
+
+        <li onClick={() => handleNav("services")}>
+          <FaConciergeBell /> Services
+        </li>
+
+        <li onClick={() => handleNav("contact")}>
+          <FaPhoneVolume /> Contact
+        </li>
       </ul>
 
-      {/* RIGHT */}
+      {/* RIGHT ACTIONS */}
       <div className="actions">
-        <a href="https://maps.google.com" target="_blank" rel="noreferrer">
-          <CiLocationOn /> <span>Location</span>
+
+        {/* LOCATION */}
+        <a
+          href="https://maps.google.com"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <CiLocationOn />
         </a>
 
+        {/* CALL */}
         <a href="tel:+918124582703" className="call-btn">
-          <FaPhoneVolume /> <span>Call</span>
+          <FaPhoneVolume />
         </a>
 
+        {/* MOBILE TOGGLE */}
         <button
           className="toggle"
           onClick={(e) => {
             e.stopPropagation();
-            setOpen(!open);
+            setMenuOpen(!menuOpen);
           }}
         >
-          {open ? <FaTimes /> : <FaBars />}
+          {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
       </div>
-
     </nav>
   );
 }
