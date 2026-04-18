@@ -12,12 +12,12 @@ function Footer() {
       className="footer"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <div className="overlay">
+      <div className="footer-overlay">
 
         <div className="footer-grid">
 
           {/* ABOUT */}
-          <div className="card">
+          <div className="footer-card">
             <h3>BreZora</h3>
             <p>
               A peaceful cottage stay designed for comfort and relaxation.
@@ -26,7 +26,7 @@ function Footer() {
           </div>
 
           {/* ADDRESS */}
-          <div className="card">
+          <div className="footer-card">
             <h3>Address</h3>
             <p>
               BreZora Stay <br />
@@ -37,19 +37,26 @@ function Footer() {
           </div>
 
           {/* SOCIAL */}
-          <div className="card">
+          <div className="footer-card">
             <h3>Follow Us</h3>
-            <div className="social">
-              <a href="https://facebook.com" target="_blank" rel="noreferrer"><CiFacebook /> Facebook</a>
-              
-              <a href="https://instagram.com" target="_blank" rel="noreferrer"><IoLogoInstagram /> Instagram</a>
-              <a href="https://google.com" target="_blank" rel="noreferrer"><CiLocationOn /> Location</a>
+            <div className="footer-social">
+              <a href="https://facebook.com" target="_blank" rel="noreferrer">
+                <CiFacebook /> Facebook
+              </a>
+
+              <a href="https://instagram.com" target="_blank" rel="noreferrer">
+                <IoLogoInstagram /> Instagram
+              </a>
+
+              <a href="https://google.com" target="_blank" rel="noreferrer">
+                <CiLocationOn /> Location
+              </a>
             </div>
           </div>
 
         </div>
 
-        <div className="bottom">
+        <div className="footer-bottom">
           © {new Date().getFullYear()} CodeNova. All rights reserved.
         </div>
 
