@@ -8,20 +8,12 @@ import adventure from "../Music/adventure.mp3";
 // IMAGES
 import CampfireImg from "../Components/images/Campfire.jpeg";
 import BBQ from "../Components/images/bbq.jpeg";
-
-import img1 from "./images/Image1.jpeg";
-import img2 from "./images/Single room villa4.jpeg";
-import img3 from "./images/Image3.jpeg";
-import img4 from "./images/Image4.jpeg";
-import img5 from "./images/Single room villa6.jpeg";
-import img6 from "./images/Single room villa5.jpeg";
-import img7 from "./images/Single room villa9.jpeg";
-import img8 from "./images/Single room villa10.jpeg";
-import img9 from "./images/Single room villa11.jpeg";
-import img10 from "./images/2bhk villa2.jpeg";
-import img11 from "./images/2bhk villa4.jpeg";
-
 import bgImage from "../assets/bg.jpg";
+
+
+
+
+
 
 const rooms = [
   {
@@ -29,8 +21,8 @@ const rooms = [
     title: "Single Room / Breezora I",
     time: "Check-out 10:00 AM",
     price: "₹2000 / Day",
-    image: img2,
-    gallery: [img6, img7, img5, img8],
+    // image: DO_Nimport("react").OT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_MEDIA_SRC_TYPES,
+    gallery: [],
     desc: "Perfect for solo travelers.",
   },
   {
@@ -38,8 +30,8 @@ const rooms = [
     title: "Single Room / Breezora II",
     time: "Check-out 10:00 AM",
     price: "₹2000 / Day",
-    image: img2,
-    gallery: [img6, img8, img7, img9],
+    image: null,
+    gallery: [],
     desc: "Premium interiors with view.",
   },
   {
@@ -47,8 +39,8 @@ const rooms = [
     title: "2BHK Villa",
     time: "Check-out 10:00 AM",
     price: "₹4000 / Day",
-    image: img10,
-    gallery: [img10, img11],
+    image: null,
+    gallery: [],
     desc: "Perfect for families.",
   },
   {
@@ -56,8 +48,8 @@ const rooms = [
     title: "3BHK Villa",
     time: "Check-out 10:00 AM",
     price: "₹6000 / Day",
-    image: img3,
-    gallery: [img3, img4],
+    image: null,
+    gallery: [],
     desc: "Luxury stay with scenic view.",
   },
   {
@@ -65,8 +57,8 @@ const rooms = [
     title: "4BHK Villa",
     time: "Check-out 10:00 AM",
     price: "₹8000 / Day",
-    image: img1,
-    gallery: [img1, img4],
+    image: null,
+    gallery: [],
     desc: "Best for large groups.",
   },
 ];

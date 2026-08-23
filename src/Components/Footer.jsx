@@ -48,7 +48,7 @@ function Footer() {
                 <IoLogoInstagram /> Instagram
               </a>
 
-              <a href="https://google.com" target="_blank" rel="noreferrer">
+              <a href="https://www.google.com/maps/dir/9.9248537,78.1450406/10.2657783,77.487645/@10.102707,77.4903489,10z/data=!3m1!4b1!4m5!4m4!1m1!4e1!1m0!3e0?hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">
                 <CiLocationOn /> Location
               </a>
             </div>
