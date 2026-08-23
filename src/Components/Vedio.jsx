@@ -1,10 +1,13 @@
 import React from "react";
 import "./Vedio.css";
+import Vedio1 from "./Vedios/Vedio-1.mp4";
+import Vedio2 from "./Vedios/Vedio-2.mp4";
+import Vedio3 from "./Vedios/Vedio-3.mp4";
 
 const videos = [
-  "/videos/cottage1.mp4",
-  "/videos/cottage2.mp4",
-  "/videos/cottage3.mp4",
+  Vedio1,
+  Vedio2,
+  Vedio3,
 ];
 
 const Vedio = () => {
