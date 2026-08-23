@@ -1,7 +1,14 @@
+/* =========================================
+   BREZORA ABOUT SECTION
+   iPhone / Apple Glassmorphism Style
+========================================= */
+
 .about {
   position: relative;
-  min-height: 100vh;
+
   width: 100%;
+  min-height: 100vh;
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11,146 +18,517 @@
   justify-content: center;
 
   overflow: hidden;
+
   animation: fadeIn 1s ease-in-out;
 }
 
-/* DARK OVERLAY */
+/* =========================================
+   BACKGROUND DARK GLASS
+========================================= */
+
 .overlay {
+  position: relative;
+
   width: 100%;
   min-height: 100vh;
-  background: rgba(0, 0, 0, 0.65);
-  padding: 60px 20px;
+
+  padding: 90px 20px;
+
   display: flex;
   align-items: center;
+
+  background: rgba(0, 0, 0, 0.38);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-/* CONTAINER */
-.about-container {
-  max-width: 1100px;
-  margin: auto;
-  color: #fff;
+/* =========================================
+   BACKGROUND LIGHT EFFECTS
+========================================= */
+
+.about::before {
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  top: -100px;
+  left: -80px;
+
+  background: rgba(255, 255, 255, 0.10);
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+
+  pointer-events: none;
 }
 
-/* HEADER */
-.about-header {
-  text-align: center;
-  margin-bottom: 50px;
-  animation: slideDown 1s ease;
+.about::after {
+  content: "";
 
-  h2 {
-    font-size: 2.6rem;
-    color: #f5c76b;
-    margin-bottom: 10px;
-  }
+  position: absolute;
 
-  p {
-    max-width: 650px;
-    margin: auto;
-    color: #ddd;
-    line-height: 1.6;
-  }
-}
+  width: 300px;
+  height: 300px;
 
-/* CONTENT */
-.about-content {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-/* TEXT */
-.about-text {
-  flex: 1;
-  min-width: 280px;
-  animation: slideLeft 1s ease;
-
-  p {
-    margin-bottom: 15px;
-    line-height: 1.7;
-    color: #e5e5e5;
-  }
-}
-
-/* FEATURES (GLASS CARD) */
-.about-features {
-  flex: 1;
-  min-width: 280px;
+  bottom: -100px;
+  right: -60px;
 
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  border-radius: 15px;
-  padding: 25px;
 
-  animation: slideRight 1s ease;
+  border-radius: 50%;
 
-  h3 {
-    color: #f5c76b;
-    margin-bottom: 15px;
+  filter: blur(90px);
+
+  pointer-events: none;
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.about-container {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1100px;
+
+  margin: auto;
+
+  color: #ffffff;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.about-header {
+  text-align: center;
+
+  max-width: 750px;
+
+  margin: 0 auto 55px;
+
+  animation: slideDown 0.9s ease;
+}
+
+/* SMALL BADGE */
+
+.about-badge {
+  display: inline-block;
+
+  padding: 8px 17px;
+
+  margin-bottom: 18px;
+
+  border-radius: 50px;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  background: rgba(255, 255, 255, 0.10);
+
+  border: 1px solid rgba(255, 255, 255, 0.20);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+/* TITLE */
+
+.about-header h2 {
+  margin: 0 0 18px;
+
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+
+  line-height: 1.15;
+
+  font-weight: 700;
+
+  letter-spacing: -1.5px;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 5px 25px rgba(0, 0, 0, 0.45);
+}
+
+.about-header h2 span {
+  display: block;
+
+  color: rgba(255, 255, 255, 0.70);
+}
+
+/* DESCRIPTION */
+
+.about-header p {
+  max-width: 680px;
+
+  margin: auto;
+
+  font-size: 1rem;
+
+  line-height: 1.8;
+
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.about-content {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 28px;
+}
+
+/* =========================================
+   GLASS CARDS
+========================================= */
+
+.glass-card {
+  position: relative;
+
+  padding: 35px;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.06)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.28),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease,
+    border-color 0.4s ease;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    opacity: 0.5;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
+  &:hover {
+    transform: translateY(-8px);
 
-    li {
-      margin-bottom: 12px;
-      padding-left: 20px;
-      position: relative;
-      transition: 0.3s;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.20),
+        rgba(255, 255, 255, 0.08)
+      );
 
-      &::before {
-        content: "✔";
-        position: absolute;
-        left: 0;
-        color: #f5c76b;
-      }
+    border-color: rgba(255, 255, 255, 0.35);
 
-      &:hover {
-        transform: translateX(6px);
-        color: #fff;
-      }
-    }
+    box-shadow:
+      0 30px 70px rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
   }
 }
 
-/* ANIMATIONS */
+/* =========================================
+   CARD ICON
+========================================= */
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 22px;
+
+  border-radius: 17px;
+
+  font-size: 1.4rem;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   CARD TITLES
+========================================= */
+
+.glass-card h3 {
+  margin: 0 0 18px;
+
+  font-size: 1.35rem;
+
+  font-weight: 600;
+
+  color: #ffffff;
+}
+
+/* =========================================
+   ABOUT TEXT
+========================================= */
+
+.about-text {
+  animation: slideLeft 1s ease;
+}
+
+.about-text p {
+  margin: 0 0 17px;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 0.98rem;
+
+  line-height: 1.8;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.about-features {
+  animation: slideRight 1s ease;
+}
+
+/* LIST */
+
+.about-features ul {
+  list-style: none;
+
+  padding: 0;
+  margin: 0;
+}
+
+/* LIST ITEM */
+
+.about-features li {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 14px 15px;
+
+  margin-bottom: 10px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 0.94rem;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.about-features li:last-child {
+  margin-bottom: 0;
+}
+
+/* CHECK ICON */
+
+.about-features li span {
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.13);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  color: #ffffff;
+
+  font-size: 0.8rem;
+}
+
+/* HOVER */
+
+.about-features li:hover {
+  transform: translateX(6px);
+
+  background: rgba(255, 255, 255, 0.12);
+
+  border-color: rgba(255, 255, 255, 0.20);
+
+  color: #ffffff;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideLeft {
-  from { opacity: 0; transform: translateX(-50px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-45px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes slideRight {
-  from { opacity: 0; transform: translateX(50px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(45px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* RESPONSIVE */
+/* =========================================
+   TABLET
+========================================= */
+
 @media (max-width: 768px) {
+
+  .overlay {
+    padding: 70px 18px;
+  }
+
+  .about-header {
+    margin-bottom: 38px;
+  }
+
   .about-content {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+  .glass-card {
+    padding: 28px;
+
+    border-radius: 26px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .overlay {
+    padding: 55px 15px;
   }
 
   .about-header h2 {
     font-size: 2rem;
-  }
-}
 
-@media (max-width: 480px) {
-  .about-header h2 {
-    font-size: 1.7rem;
+    letter-spacing: -0.8px;
   }
 
-  .overlay {
-    padding: 40px 15px;
+  .about-header p {
+    font-size: 0.9rem;
+  }
+
+  .about-badge {
+    font-size: 0.65rem;
+
+    padding: 7px 14px;
+  }
+
+  .glass-card {
+    padding: 23px;
+
+    border-radius: 23px;
+  }
+
+  .glass-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .about-text p {
+    font-size: 0.9rem;
+  }
+
+  .about-features li {
+    font-size: 0.85rem;
+
+    padding: 12px;
   }
 }

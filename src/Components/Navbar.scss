@@ -1,163 +1,738 @@
-$accent: #d4af37;
+/* ==================================================
+   BREZORA NAVBAR
+   PREMIUM IPHONE GLASS STYLE
+================================================== */
 
-/* ================= GLOBAL ================= */
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
+/* ==================================================
+   VARIABLES
+================================================== */
+
+$gold: #d4af37;
+$white: #ffffff;
+$black: #111111;
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+.navbar,
+.navbar *,
+.nav-menu,
+.nav-menu li {
+  box-sizing: border-box;
 }
 
-/* 🔥 REMOVE extra space hack */
-.nav-space {
-  display: none;
-}
 
-/* ================= NAVBAR ================= */
+/* ==================================================
+   NAVBAR
+================================================== */
+
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
 
-  z-index: 99999;
+  top: 14px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: calc(100% - 36px);
+  max-width: 1200px;
+
+  height: 68px;
+
+  padding: 7px 10px 7px 13px;
 
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
 
-  padding: 0 20px;
+  z-index: 10000;
 
-  /* 🔥 KEY: fully transparent initially */
-  background: transparent;
+  border-radius: 24px;
 
-  transition: all 0.4s ease;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.06)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  backdrop-filter:
+    blur(30px)
+    saturate(180%);
+
+  -webkit-backdrop-filter:
+    blur(30px)
+    saturate(180%);
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+
+  transition:
+    top 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* ================= GLASS EFFECT ON SCROLL ================= */
-.navbar.glass {
-  background: rgba(20, 25, 40, 0.45);
 
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px);
+/* ==================================================
+   SCROLLED NAVBAR
+================================================== */
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+.navbar.scrolled {
+  top: 8px;
 
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.20),
+      rgba(255, 255, 255, 0.07)
+    );
+
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.38),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
 }
 
-/* ================= LEFT ================= */
-.left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
 
-.logo {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-}
+/* ==================================================
+   BRAND
+================================================== */
 
 .brand {
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-/* ================= MENU ================= */
-.menu {
-  display: flex;
-  gap: 22px;
-  list-style: none;
-}
-
-.menu li {
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.menu li:hover {
-  color: $accent;
-}
-
-/* ================= ACTIONS ================= */
-.actions {
   display: flex;
   align-items: center;
+
   gap: 10px;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  user-select: none;
 }
 
-.actions a {
-  width: 36px;
-  height: 36px;
+
+/* ==================================================
+   LOGO GLASS
+================================================== */
+
+.logo-glass {
+  width: 45px;
+  height: 45px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   border-radius: 50%;
-  color: #fff;
 
-  transition: 0.3s;
+  background:
+    rgba(255, 255, 255, 0.12);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.25);
+
+  box-shadow:
+    inset 0 1px 5px rgba(255, 255, 255, 0.22),
+    0 5px 18px rgba(0, 0, 0, 0.16);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.actions a:hover {
-  background: rgba(255,255,255,0.15);
+.logo-glass:hover {
+  transform: scale(1.06);
+
+  box-shadow:
+    0 0 20px rgba(212, 175, 55, 0.18),
+    inset 0 1px 5px rgba(255, 255, 255, 0.3);
 }
 
-.call-btn {
-  background: rgba(255,255,255,0.15);
+.logo-glass img {
+  width: 33px;
+  height: 33px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
 }
 
-.call-btn:hover {
-  background: $accent;
-  color: #000;
+
+/* ==================================================
+   BRAND TEXT
+================================================== */
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1;
 }
 
-/* ================= TOGGLE ================= */
-.toggle {
-  display: none;
-  font-size: 22px;
-  background: none;
-  border: none;
-  color: #fff;
+.brand-text h2 {
+  margin: 0;
+
+  color: $black !important;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.brand-text span {
+  margin-top: 5px;
+
+  color: rgba(10, 10, 10, 0.72) !important;
+
+  font-size: 7px;
+  font-weight: 500;
+
+  letter-spacing: 3px;
+}
+
+
+/* ==================================================
+   DESKTOP MENU
+================================================== */
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 10px 14px;
+
+  border-radius: 14px;
+
+  color: $black !important;
+
   cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
+.nav-menu li span {
+  color: $black !important;
+}
 
-  .toggle {
-    display: block;
+.nav-menu li svg {
+  color: $black !important;
+
+  font-size: 14px;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.nav-menu li:hover {
+  background:
+    rgba(255, 255, 255, 0.16);
+
+  transform:
+    translateY(-2px);
+}
+
+.nav-menu li:hover svg {
+  color: $gold !important;
+
+  transform:
+    scale(1.15);
+}
+
+
+/* ==================================================
+   RIGHT ACTIONS
+================================================== */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  flex-shrink: 0;
+}
+
+
+/* ==================================================
+   GLASS ICON
+================================================== */
+
+.glass-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  text-decoration: none;
+
+  color: $black !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.06)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.22);
+
+  backdrop-filter: blur(20px);
+
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.glass-icon svg {
+  color: $black !important;
+
+  font-size: 19px;
+}
+
+.glass-icon:hover {
+  transform:
+    translateY(-2px)
+    scale(1.04);
+
+  background:
+    rgba(255, 255, 255, 0.23);
+
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.22);
+}
+
+
+/* ==================================================
+   CALL BUTTON
+================================================== */
+
+.glass-icon.call {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(212, 175, 55, 0.95),
+      rgba(212, 175, 55, 0.72)
+    );
+
+  border-color:
+    rgba(255, 255, 255, 0.32);
+
+  box-shadow:
+    0 5px 20px rgba(212, 175, 55, 0.25);
+}
+
+.glass-icon.call svg {
+  color: $black !important;
+}
+
+.glass-icon.call:hover {
+  background: $gold;
+
+  box-shadow:
+    0 8px 28px rgba(212, 175, 55, 0.4);
+}
+
+
+/* ==================================================
+   HAMBURGER BUTTON
+================================================== */
+
+.glass-menu-button {
+  width: 40px;
+  height: 40px;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.25);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.20),
+      rgba(255, 255, 255, 0.06)
+    );
+
+  backdrop-filter:
+    blur(25px)
+    saturate(180%);
+
+  -webkit-backdrop-filter:
+    blur(25px)
+    saturate(180%);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.28),
+    0 5px 20px rgba(0, 0, 0, 0.22);
+
+  color: $black !important;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: $black !important;
+
+  font-size: 17px;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.menu-icon svg {
+  color: $black !important;
+}
+
+
+/* ==================================================
+   OPEN MENU BUTTON
+================================================== */
+
+.glass-menu-button.active {
+  transform: rotate(90deg);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(212, 175, 55, 0.35),
+      rgba(255, 255, 255, 0.08)
+    );
+
+  border-color:
+    rgba(212, 175, 55, 0.5);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.25),
+    0 6px 25px rgba(212, 175, 55, 0.2);
+}
+
+
+/* ==================================================
+   MOBILE BACKDROP
+================================================== */
+
+.mobile-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9998;
+
+  background:
+    rgba(0, 0, 0, 0.28);
+
+  backdrop-filter: blur(4px);
+
+  -webkit-backdrop-filter: blur(4px);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.mobile-backdrop.show {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    top: 10px;
+
+    width: calc(100% - 18px);
+
+    height: 62px;
+
+    padding:
+      6px
+      8px
+      6px
+      10px;
+
+    border-radius: 21px;
   }
 
-  .menu {
+
+  /* MENU BUTTON */
+
+  .glass-menu-button {
+    display: flex;
+
+    width: 39px;
+    height: 39px;
+  }
+
+
+  /* MOBILE MENU */
+
+  .nav-menu {
     position: fixed;
-    top: 70px;
-    right: 15px;
+
+    top: 78px;
+    right: 0;
+
+    width: 225px;
+
+    padding: 9px;
+
+    display: flex;
 
     flex-direction: column;
-    gap: 15px;
 
-    padding: 15px;
-    border-radius: 12px;
+    align-items: stretch;
 
-    background: rgba(20, 25, 40, 0.7);
-    backdrop-filter: blur(20px);
+    gap: 5px;
+
+    border-radius: 22px;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.20),
+        rgba(255, 255, 255, 0.07)
+      );
+
+    backdrop-filter:
+      blur(35px)
+      saturate(180%);
+
+    -webkit-backdrop-filter:
+      blur(35px)
+      saturate(180%);
+
+    border:
+      1px solid rgba(255, 255, 255, 0.25);
+
+    box-shadow:
+      0 20px 55px rgba(0, 0, 0, 0.42),
+      inset 0 1px 1px rgba(255, 255, 255, 0.25);
 
     opacity: 0;
-    transform: translateY(-10px);
+
+    visibility: hidden;
+
     pointer-events: none;
 
-    transition: 0.3s;
+    transform:
+      translateY(-15px)
+      scale(0.94);
+
+    transform-origin:
+      top right;
+
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      visibility 0.3s ease;
   }
 
-  .menu.open {
+
+  /* OPEN */
+
+  .nav-menu.open {
     opacity: 1;
-    transform: translateY(0);
+
+    visibility: visible;
+
     pointer-events: auto;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+
+  /* MOBILE ITEMS */
+
+  .nav-menu li {
+    width: 100%;
+
+    padding:
+      13px
+      14px;
+
+    border-radius: 15px;
+
+    background:
+      rgba(255, 255, 255, 0.07);
+
+    border:
+      1px solid rgba(255, 255, 255, 0.09);
+
+    color: $black !important;
+  }
+
+  .nav-menu li span {
+    color: $black !important;
+
+    font-size: 14px;
+  }
+
+  .nav-menu li svg {
+    color: $black !important;
+
+    font-size: 15px;
+  }
+
+  .nav-menu li:hover {
+    background:
+      rgba(255, 255, 255, 0.16);
+
+    transform:
+      translateX(3px);
+  }
+
+  .nav-menu li:hover svg {
+    color: $gold !important;
+  }
+
+
+  /* LOGO */
+
+  .logo-glass {
+    width: 39px;
+    height: 39px;
+  }
+
+  .logo-glass img {
+    width: 29px;
+    height: 29px;
+  }
+
+
+  /* BRAND */
+
+  .brand-text h2 {
+    font-size: 14px;
+  }
+
+  .brand-text span {
+    font-size: 6px;
+  }
+
+
+  /* ACTIONS */
+
+  .glass-icon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .glass-menu-button {
+    width: 37px;
+    height: 37px;
+  }
+}
+
+
+/* ==================================================
+   SMALL PHONES
+================================================== */
+
+@media (max-width: 430px) {
+
+  .navbar {
+    width: calc(100% - 12px);
+
+    top: 8px;
+  }
+
+  .brand-text span {
+    display: none;
+  }
+
+  .brand-text h2 {
+    font-size: 13px;
+
+    letter-spacing: 1.5px;
+  }
+
+  .nav-actions {
+    gap: 4px;
+  }
+
+  .glass-icon,
+  .glass-menu-button {
+    width: 35px;
+    height: 35px;
+  }
+
+  .nav-menu {
+    top: 73px;
+
+    right: 0;
+
+    width: 205px;
   }
 }
