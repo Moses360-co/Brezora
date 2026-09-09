@@ -1,297 +1,218 @@
+@charset "UTF-8";
 /* =========================================================
-   BREZORA ADMIN DASHBOARD
-   SOFT LUXURY iPHONE GLASSMORPHISM
-   MATCHES CONTACT / IMAGE 1 STYLE
+   BREZORA — ADMIN DASHBOARD
+   FULL RESPONSIVE GLASSMORPHISM
+   Desktop / Laptop / Tablet / Mobile
 ========================================================= */
+/* =========================================================
+   GLOBAL BOX SIZING
+========================================================= */
+.admin-dashboard,
+.admin-dashboard *,
+.admin-dashboard *::before,
+.admin-dashboard *::after {
+  box-sizing: border-box;
+}
+
 /* =========================================================
    MAIN DASHBOARD
 ========================================================= */
 .admin-dashboard {
+  width: 100%;
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
   padding: 100px 20px 60px;
-  box-sizing: border-box;
+  overflow-x: hidden;
   color: #f8fafc;
-  background-image: linear-gradient(rgba(55, 35, 39, 0.36), rgba(55, 35, 39, 0.44)), url("../assets/bg.jpg");
+  background: linear-gradient(135deg, rgba(5, 25, 30, 0.82), rgba(15, 118, 110, 0.48), rgba(20, 25, 30, 0.84)), url("../assets/bg.jpg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   background-attachment: fixed;
-  animation: dashboardFade 0.8s ease both;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
 }
 
 /* =========================================================
-   SOFT WARM LIGHT
+   BACKGROUND LIGHT
 ========================================================= */
-.admin-dashboard::before {
-  content: "";
-  position: absolute;
-  width: 480px;
-  height: 480px;
-  top: -190px;
-  left: -170px;
-  border-radius: 50%;
-  background: rgba(255, 175, 145, 0.18);
-  filter: blur(100px);
-  pointer-events: none;
-  z-index: 0;
-  animation: floatingGlow 10s ease-in-out infinite;
-}
-
-/* =========================================================
-   SOFT WHITE LIGHT
-========================================================= */
+.admin-dashboard::before,
 .admin-dashboard::after {
   content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  right: -150px;
-  bottom: -140px;
+  position: fixed;
+  width: 360px;
+  height: 360px;
   border-radius: 50%;
-  background: rgba(255, 220, 205, 0.15);
-  filter: blur(110px);
   pointer-events: none;
+  filter: blur(90px);
+  opacity: 0.15;
   z-index: 0;
-  animation: floatingGlow 12s ease-in-out infinite reverse;
 }
 
-/* =========================================================
-   CONTENT ABOVE BACKGROUND
-========================================================= */
-.admin-dashboard > * {
-  position: relative;
-  z-index: 2;
+.admin-dashboard::before {
+  top: 50px;
+  left: -180px;
+  background: #14b8a6;
+}
+
+.admin-dashboard::after {
+  right: -180px;
+  bottom: 50px;
+  background: #d4af37;
 }
 
 /* =========================================================
    HEADER
 ========================================================= */
 .admin-dashboard-header {
+  position: relative;
+  z-index: 2;
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto 24px;
-  padding: 22px 25px;
+  margin: 0 auto 25px;
+  padding: 28px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  position: relative;
-  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.23);
   border-radius: 26px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.19), rgba(255, 255, 255, 0.07));
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  backdrop-filter: blur(28px) saturate(135%);
-  -webkit-backdrop-filter: blur(28px) saturate(135%);
-  box-shadow: 0 22px 50px rgba(35, 20, 25, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.3);
-  animation: slideDown 0.7s ease both;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-/* Glass highlight */
-.admin-dashboard-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
-  opacity: 0.8;
-}
-
+/* HEADER TEXT */
 .admin-dashboard-header h1 {
-  margin: 0;
-  color: #ffffff;
-  font-size: clamp(25px, 4vw, 34px);
-  line-height: 1.15;
+  margin: 0 0 7px;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 800;
-  letter-spacing: -0.8px;
-  text-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  line-height: 1.2;
 }
 
 .admin-dashboard-header p {
-  margin: 6px 0 0;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 14px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
   line-height: 1.5;
 }
 
 /* =========================================================
-   LOGOUT
+   LOGOUT BUTTON
 ========================================================= */
 .admin-logout {
-  min-height: 44px;
-  padding: 11px 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   flex-shrink: 0;
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  color: #ffffff;
-  font-size: 13px;
+  width: 115px;
+  height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 13px;
+  color: #fff;
+  background: rgba(239, 68, 68, 0.82);
+  font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.22);
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .admin-logout:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.8), rgba(220, 38, 38, 0.8));
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 14px 30px rgba(239, 68, 68, 0.18);
-}
-
-.admin-logout:active {
-  transform: scale(0.95);
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.25);
 }
 
 /* =========================================================
    STATISTICS
 ========================================================= */
 .admin-statistics {
+  position: relative;
+  z-index: 2;
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto 24px;
+  margin: 0 auto 25px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  animation: fadeUp 0.8s ease 0.15s both;
+  gap: 18px;
 }
 
-/* =========================================================
-   STAT CARD
-========================================================= */
+/* STAT CARD */
 .admin-stat-card {
-  min-height: 125px;
-  padding: 23px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 25px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.065));
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  backdrop-filter: blur(28px) saturate(135%);
-  -webkit-backdrop-filter: blur(28px) saturate(135%);
-  box-shadow: 0 20px 45px rgba(35, 20, 25, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.28);
-  transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-}
-
-/* Glass reflection */
-.admin-stat-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 75%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.7s ease;
+  width: 100%;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.25s ease;
 }
 
 .admin-stat-card:hover {
-  transform: translateY(-6px);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.085));
-  border-color: rgba(255, 255, 255, 0.34);
-  box-shadow: 0 28px 60px rgba(35, 20, 25, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.17);
+  transform: translateY(-3px);
 }
 
-.admin-stat-card:hover::before {
-  left: 140%;
-}
-
-.admin-stat-card span {
-  margin-bottom: 10px;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
+.admin-stat-card h3 {
+  margin: 0 0 8px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.85rem;
   font-weight: 600;
 }
 
-.admin-stat-card strong {
-  color: #ffffff;
-  font-size: 34px;
-  line-height: 1;
+.admin-stat-card p {
+  margin: 0;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
   font-weight: 800;
-  letter-spacing: -1px;
+}
+
+.admin-stat-card.available p {
+  color: #5eead4;
+}
+
+.admin-stat-card.unavailable p {
+  color: #f87171;
 }
 
 /* =========================================================
-   AVAILABLE STAT
-========================================================= */
-.admin-stat-card.available {
-  border-left: 4px solid #14b8a6;
-}
-
-.admin-stat-card.available strong {
-  color: #7ce9dc;
-}
-
-/* =========================================================
-   UNAVAILABLE STAT
-========================================================= */
-.admin-stat-card.unavailable {
-  border-left: 4px solid rgba(239, 68, 68, 0.85);
-}
-
-.admin-stat-card.unavailable strong {
-  color: #ffb0b8;
-}
-
-/* =========================================================
-   ROOM SECTION
+   ROOM MANAGEMENT SECTION
 ========================================================= */
 .admin-room-section {
+  position: relative;
+  z-index: 2;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 26px;
-  position: relative;
-  overflow: hidden;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.23);
   border-radius: 28px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.055));
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  backdrop-filter: blur(30px) saturate(135%);
-  -webkit-backdrop-filter: blur(30px) saturate(135%);
-  box-shadow: 0 25px 60px rgba(35, 20, 25, 0.21), inset 0 1px 1px rgba(255, 255, 255, 0.28);
-  animation: fadeUp 0.8s ease 0.25s both;
-}
-
-/* Top reflection */
-.admin-room-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 /* =========================================================
    SECTION HEADING
 ========================================================= */
 .admin-section-heading {
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  width: 100%;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .admin-section-heading h2 {
-  margin: 0;
-  color: #ffffff;
-  font-size: 24px;
+  margin: 0 0 7px;
+  font-size: clamp(1.35rem, 3vw, 2rem);
   font-weight: 800;
-  letter-spacing: -0.5px;
+  line-height: 1.2;
 }
 
 .admin-section-heading p {
-  margin: 7px 0 0;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
@@ -299,64 +220,67 @@
    ROOM LIST
 ========================================================= */
 .admin-room-list {
-  margin-top: 18px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 14px;
 }
 
 /* =========================================================
-   ROOM CARD
+   ROOM CARD — DESKTOP
 ========================================================= */
 .admin-room-card {
-  min-height: 86px;
-  padding: 14px 17px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  overflow: hidden;
-  border-radius: 21px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045));
-  border: 1px solid rgba(255, 255, 255, 0.19);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  box-shadow: 0 10px 28px rgba(35, 20, 25, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.18);
-  animation: roomCardIn 0.55s ease both;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-/* Top glass line */
-.admin-room-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) 180px;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 22px;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.07));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
 }
 
-.admin-room-card:hover {
-  transform: translateX(5px);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.07));
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 18px 38px rgba(35, 20, 25, 0.21), inset 0 1px 1px rgba(255, 255, 255, 0.24);
+/* UNAVAILABLE ROOM */
+.admin-room-card.admin-room-unavailable {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: linear-gradient(120deg, rgba(239, 68, 68, 0.08), rgba(255, 255, 255, 0.07));
 }
 
 /* =========================================================
-   UNAVAILABLE ROOM
+   ROOM NUMBER
 ========================================================= */
-.admin-room-card.admin-room-unavailable {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(255, 255, 255, 0.04));
-  border-color: rgba(239, 68, 68, 0.2);
+.admin-room-number {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(20, 184, 166, 0.4);
+  border-radius: 20px;
+  background: rgba(20, 184, 166, 0.08);
 }
 
-.admin-room-card.admin-room-unavailable .admin-room-number {
-  background: rgba(239, 68, 68, 0.11);
-  border-color: rgba(239, 68, 68, 0.2);
-  color: #ffb0b8;
+.admin-room-number span:first-child {
+  margin-bottom: 3px;
+  color: #5eead4;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.admin-room-number span:last-child {
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 800;
 }
 
 /* =========================================================
@@ -364,516 +288,543 @@
 ========================================================= */
 .admin-room-info {
   min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.admin-room-info > div:last-child {
-  min-width: 0;
+  overflow: hidden;
 }
 
 .admin-room-info h3 {
-  margin: 0 0 5px;
-  overflow: hidden;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  margin: 0 0 7px;
+  color: #fff;
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  font-weight: 750;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .admin-room-info p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
-}
-
-/* =========================================================
-   ROOM NUMBER
-========================================================= */
-.admin-room-number {
-  width: 58px;
-  height: 58px;
-  flex: 0 0 58px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  background: rgba(20, 184, 166, 0.12);
-  border: 1px solid rgba(20, 184, 166, 0.22);
-  color: #7ce9dc;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18);
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.admin-room-number span {
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  opacity: 0.75;
-}
-
-.admin-room-number strong {
-  margin-top: 2px;
-  font-size: 19px;
-  font-weight: 800;
-}
-
-.admin-room-card:hover .admin-room-number {
-  transform: rotate(-4deg) scale(1.06);
-  background: rgba(20, 184, 166, 0.17);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.9rem;
 }
 
 /* =========================================================
    ACTION AREA
 ========================================================= */
 .admin-room-action {
-  flex-shrink: 0;
+  width: 180px;
+  min-width: 180px;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 9px;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 7px;
+  margin-left: auto;
 }
 
 /* =========================================================
    STATUS
 ========================================================= */
 .room-status {
-  min-height: 32px;
-  padding: 7px 12px;
-  display: inline-flex;
+  width: 100%;
+  min-height: 24px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
-  font-size: 11px;
+  text-align: center;
+  font-size: 0.8rem;
   font-weight: 700;
   white-space: nowrap;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  transition: transform 0.25s ease;
 }
 
-.room-status:hover {
-  transform: scale(1.04);
+.room-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  margin-right: 6px;
+  border-radius: 50%;
 }
 
-/* Available */
+/* AVAILABLE */
 .available-status {
-  color: #7ce9dc;
-  background: rgba(20, 184, 166, 0.12);
-  border: 1px solid rgba(20, 184, 166, 0.22);
+  color: #5eead4;
 }
 
-/* Unavailable */
+.available-status::before {
+  background: #5eead4;
+  box-shadow: 0 0 8px rgba(94, 234, 212, 0.8);
+}
+
+/* UNAVAILABLE */
 .unavailable-status {
-  color: #ffb0b8;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.unavailable-status::before {
+  background: #f87171;
+  box-shadow: 0 0 8px rgba(248, 113, 113, 0.7);
 }
 
 /* =========================================================
    AVAILABILITY BUTTON
+   SAME WIDTH + SAME HEIGHT FOR BOTH STATES
 ========================================================= */
 .availability-button {
-  min-height: 38px;
-  padding: 9px 15px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.23);
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 700;
+  width: 180px;
+  min-width: 180px;
+  height: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 15px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 750;
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.22);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-}
-
-.availability-button:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.07);
-  box-shadow: 0 12px 27px rgba(0, 0, 0, 0.22);
-}
-
-.availability-button:active {
-  transform: scale(0.95);
-}
-
-/* =========================================================
-   MARK UNAVAILABLE
-========================================================= */
-.availability-button.disable {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.88), rgba(220, 38, 38, 0.88));
+  transition: all 0.25s ease;
 }
 
 /* =========================================================
    MAKE AVAILABLE
 ========================================================= */
 .availability-button.enable {
-  background: linear-gradient(135deg, rgba(15, 118, 110, 0.9), rgba(20, 184, 166, 0.9));
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
+  border-color: rgba(94, 234, 212, 0.45);
+  box-shadow: 0 8px 22px rgba(20, 184, 166, 0.2);
+}
+
+/* =========================================================
+   MARK UNAVAILABLE
+========================================================= */
+.availability-button.disable {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-color: rgba(248, 113, 113, 0.45);
+  box-shadow: 0 8px 22px rgba(239, 68, 68, 0.2);
+}
+
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
+.availability-button:hover {
+  transform: translateY(-2px);
+}
+
+.availability-button.enable:hover {
+  box-shadow: 0 12px 28px rgba(20, 184, 166, 0.32);
+}
+
+.availability-button.disable:hover {
+  box-shadow: 0 12px 28px rgba(239, 68, 68, 0.32);
+}
+
+.availability-button:active {
+  transform: scale(0.97);
 }
 
 /* =========================================================
    NO ROOMS
 ========================================================= */
 .no-admin-rooms {
-  padding: 55px 25px;
+  width: 100%;
+  padding: 45px 20px;
   text-align: center;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px dashed rgba(255, 255, 255, 0.22);
-  animation: fadeUp 0.6s ease both;
-}
-
-.no-admin-rooms h3 {
-  margin: 0 0 8px;
-  color: #ffffff;
-  font-size: 19px;
-}
-
-.no-admin-rooms p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* =========================================================
-   ANIMATIONS
-========================================================= */
-@keyframes dashboardFade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes roomCardIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes floatingGlow {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(30px, 25px) scale(1.08);
-  }
-}
-/* =========================================================
-   TABLET
+   1024px — LAPTOP
 ========================================================= */
 @media (max-width: 1024px) {
   .admin-dashboard {
-    padding: 90px 18px 45px;
+    padding: 80px 18px 50px;
     background-attachment: scroll;
   }
-  .admin-dashboard-header {
-    padding: 20px;
-  }
-  .admin-statistics {
-    gap: 13px;
-  }
-  .admin-stat-card {
-    padding: 20px;
+  .admin-dashboard-header,
+  .admin-statistics,
+  .admin-room-section {
+    max-width: 960px;
   }
   .admin-room-section {
-    padding: 23px;
+    padding: 25px;
   }
   .admin-room-card {
-    padding: 14px;
-  }
-}
-/* =========================================================
-   MOBILE
-========================================================= */
-@media (max-width: 768px) {
-  .admin-dashboard {
-    padding: 85px 12px 35px;
-    background-position: center;
-    background-attachment: scroll;
-  }
-  /* HEADER */
-  .admin-dashboard-header {
-    padding: 18px;
-    border-radius: 23px;
-    align-items: flex-start;
-  }
-  .admin-dashboard-header h1 {
-    font-size: 25px;
-  }
-  .admin-dashboard-header p {
-    font-size: 12px;
-  }
-  /* STATISTICS */
-  .admin-statistics {
-    grid-template-columns: 1fr;
-    gap: 11px;
-    margin-bottom: 18px;
-  }
-  .admin-stat-card {
-    min-height: 100px;
-    padding: 18px;
-    border-radius: 22px;
-  }
-  .admin-stat-card strong {
-    font-size: 29px;
-  }
-  /* ROOM SECTION */
-  .admin-room-section {
-    padding: 18px;
-    border-radius: 23px;
-  }
-  .admin-section-heading h2 {
-    font-size: 21px;
-  }
-  /* ROOM CARD */
-  .admin-room-list {
-    gap: 10px;
-  }
-  .admin-room-card {
-    padding: 15px;
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 70px minmax(0, 1fr) 170px;
     gap: 15px;
-    border-radius: 20px;
-  }
-  .admin-room-card:hover {
-    transform: translateY(-3px);
-  }
-  .admin-room-info {
-    width: 100%;
-  }
-  .admin-room-info h3 {
-    font-size: 15px;
-  }
-  /* ACTION */
-  .admin-room-action {
-    width: 100%;
-    justify-content: space-between;
-  }
-  .availability-button {
-    flex: 1;
-    min-height: 42px;
-  }
-}
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-@media (max-width: 480px) {
-  .admin-dashboard {
-    padding: 80px 9px 30px;
-  }
-  /* HEADER */
-  .admin-dashboard-header {
-    margin-bottom: 13px;
-    padding: 15px;
-    border-radius: 20px;
-    gap: 10px;
-  }
-  .admin-dashboard-header h1 {
-    font-size: 21px;
-    letter-spacing: -0.5px;
-  }
-  .admin-dashboard-header p {
-    margin-top: 4px;
-    font-size: 10px;
-  }
-  /* LOGOUT */
-  .admin-logout {
-    min-height: 38px;
-    padding: 8px 12px;
-    border-radius: 12px;
-    font-size: 10px;
-  }
-  /* STATISTICS */
-  .admin-statistics {
-    gap: 9px;
-  }
-  .admin-stat-card {
-    min-height: 88px;
-    padding: 16px;
-    border-radius: 19px;
-  }
-  .admin-stat-card span {
-    font-size: 11px;
-    margin-bottom: 7px;
-  }
-  .admin-stat-card strong {
-    font-size: 26px;
-  }
-  /* ROOM SECTION */
-  .admin-room-section {
-    padding: 15px;
-    border-radius: 20px;
-  }
-  .admin-section-heading {
-    padding-bottom: 15px;
-  }
-  .admin-section-heading h2 {
-    font-size: 19px;
-  }
-  .admin-section-heading p {
-    font-size: 11px;
-  }
-  /* ROOM CARD */
-  .admin-room-card {
-    padding: 13px;
-    border-radius: 18px;
-  }
-  .admin-room-info {
-    gap: 11px;
+    padding: 16px 18px;
   }
   .admin-room-number {
-    width: 51px;
-    height: 51px;
-    flex-basis: 51px;
-    border-radius: 15px;
+    width: 70px;
+    height: 70px;
   }
-  .admin-room-number strong {
-    font-size: 17px;
-  }
-  .admin-room-number span {
-    font-size: 8px;
-  }
-  .admin-room-info h3 {
-    font-size: 13px;
-    white-space: normal;
-    line-height: 1.35;
-  }
-  .admin-room-info p {
-    font-size: 11px;
-  }
-  /* ACTION */
   .admin-room-action {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
+    width: 170px;
+    min-width: 170px;
+  }
+  .availability-button {
+    width: 170px;
+    min-width: 170px;
+  }
+}
+/* =========================================================
+   900px — TABLET
+========================================================= */
+@media (max-width: 900px) {
+  .admin-statistics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .admin-stat-card:last-child {
+    grid-column: 1/-1;
+  }
+  /*
+    ROOM CARD
+    Room number + info on first row
+    Action on second row
+  */
+  .admin-room-card {
+    grid-template-columns: 70px minmax(0, 1fr);
+    align-items: center;
+  }
+  .admin-room-action {
+    width: 100%;
+    min-width: 0;
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 180px;
+    align-items: center;
+    gap: 12px;
+    margin-left: 0;
   }
   .room-status {
     width: 100%;
-    min-height: 34px;
-    font-size: 10px;
   }
   .availability-button {
-    width: 100%;
-    min-height: 42px;
-    font-size: 11px;
-    border-radius: 13px;
+    width: 180px;
+    min-width: 180px;
+    justify-self: end;
   }
 }
 /* =========================================================
-   EXTRA SMALL
+   768px — SMALL TABLET
 ========================================================= */
-@media (max-width: 350px) {
+@media (max-width: 768px) {
   .admin-dashboard {
-    padding: 75px 7px 20px;
+    padding: 70px 15px 45px;
   }
   .admin-dashboard-header {
-    padding: 13px;
-  }
-  .admin-dashboard-header h1 {
-    font-size: 18px;
-  }
-  .admin-dashboard-header p {
-    font-size: 9px;
-  }
-  .admin-logout {
-    padding: 7px 9px;
-    font-size: 9px;
+    padding: 23px;
+    border-radius: 22px;
   }
   .admin-stat-card {
-    padding: 14px;
-    min-height: 82px;
-  }
-  .admin-stat-card strong {
-    font-size: 23px;
+    padding: 20px;
   }
   .admin-room-section {
-    padding: 12px;
+    padding: 22px;
+    border-radius: 23px;
   }
   .admin-room-card {
+    padding: 15px;
+  }
+}
+/* =========================================================
+   640px — MOBILE
+========================================================= */
+@media (max-width: 640px) {
+  .admin-dashboard {
+    width: 100%;
+    min-height: 100svh;
+    padding: calc(65px + env(safe-area-inset-top)) 10px calc(30px + env(safe-area-inset-bottom));
+    background-position: center top;
+  }
+  /* HEADER */
+  .admin-dashboard-header {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 19px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 15px;
+    border-radius: 20px;
+  }
+  .admin-dashboard-header h1 {
+    font-size: 1.4rem;
+  }
+  .admin-dashboard-header p {
+    font-size: 0.78rem;
+  }
+  /* LOGOUT */
+  .admin-logout {
+    width: 100%;
+    height: 44px;
+    font-size: 0.82rem;
+  }
+  /* STATISTICS */
+  .admin-statistics {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .admin-stat-card:last-child {
+    grid-column: auto;
+  }
+  .admin-stat-card {
+    padding: 17px;
+    border-radius: 18px;
+  }
+  .admin-stat-card h3 {
+    font-size: 0.78rem;
+  }
+  .admin-stat-card p {
+    font-size: 1.7rem;
+  }
+  /* ROOM SECTION */
+  .admin-room-section {
+    width: 100%;
+    padding: 17px 10px;
+    border-radius: 20px;
+  }
+  /* HEADING */
+  .admin-section-heading {
+    margin-bottom: 17px;
+    padding: 0 4px 15px;
+  }
+  .admin-section-heading h2 {
+    font-size: 1.3rem;
+  }
+  .admin-section-heading p {
+    font-size: 0.76rem;
+  }
+  /* ROOM LIST */
+  .admin-room-list {
+    gap: 10px;
+  }
+  /* ROOM CARD */
+  .admin-room-card {
+    width: 100%;
+    grid-template-columns: 55px minmax(0, 1fr);
+    gap: 11px;
+    padding: 13px;
+    border-radius: 17px;
+  }
+  /* ROOM NUMBER */
+  .admin-room-number {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+  }
+  .admin-room-number span:first-child {
+    font-size: 0.55rem;
+  }
+  .admin-room-number span:last-child {
+    font-size: 1.1rem;
+  }
+  /* INFO */
+  .admin-room-info h3 {
+    font-size: 0.9rem;
+  }
+  .admin-room-info p {
+    font-size: 0.77rem;
+  }
+  /*
+    MOBILE ACTION
+    Status and button remain centered
+    Button is same width in every room
+  */
+  .admin-room-action {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: 1fr;
+    gap: 7px;
+    margin-top: 2px;
+  }
+  .room-status {
+    width: 100%;
+    min-height: 22px;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+  .availability-button {
+    width: 100%;
+    min-width: 0;
+    height: 45px;
+    min-height: 45px;
+    justify-self: stretch;
+    border-radius: 13px;
+    font-size: 0.76rem;
+  }
+}
+/* =========================================================
+   480px — SMALL MOBILE
+========================================================= */
+@media (max-width: 480px) {
+  .admin-dashboard {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .admin-dashboard-header {
+    padding: 17px 14px;
+  }
+  .admin-dashboard-header h1 {
+    font-size: 1.3rem;
+  }
+  .admin-room-section {
+    padding: 15px 8px;
+  }
+  .admin-room-card {
+    grid-template-columns: 50px minmax(0, 1fr);
+    gap: 9px;
     padding: 11px;
+  }
+  .admin-room-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 13px;
+  }
+  .admin-room-number span:first-child {
+    font-size: 0.5rem;
+  }
+  .admin-room-number span:last-child {
+    font-size: 1rem;
+  }
+  .admin-room-info h3 {
+    font-size: 0.84rem;
+  }
+  .admin-room-info p {
+    font-size: 0.73rem;
+  }
+  .room-status {
+    font-size: 0.72rem;
+  }
+  .availability-button {
+    height: 43px;
+    min-height: 43px;
+    font-size: 0.72rem;
+  }
+}
+/* =========================================================
+   375px — VERY SMALL MOBILE
+========================================================= */
+@media (max-width: 375px) {
+  .admin-dashboard {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .admin-dashboard-header {
+    padding: 15px 12px;
+  }
+  .admin-dashboard-header h1 {
+    font-size: 1.2rem;
+  }
+  .admin-dashboard-header p {
+    font-size: 0.72rem;
+  }
+  .admin-room-section {
+    padding: 13px 6px;
+  }
+  .admin-room-card {
+    grid-template-columns: 46px minmax(0, 1fr);
+    padding: 10px;
+    gap: 8px;
   }
   .admin-room-number {
     width: 46px;
     height: 46px;
-    flex-basis: 46px;
+  }
+  .admin-room-number span:last-child {
+    font-size: 0.95rem;
   }
   .admin-room-info h3 {
-    font-size: 12px;
+    font-size: 0.79rem;
   }
   .admin-room-info p {
-    font-size: 10px;
+    font-size: 0.69rem;
+  }
+  .availability-button {
+    height: 42px;
+    min-height: 42px;
+    font-size: 0.69rem;
+  }
+}
+/* =========================================================
+   320px — EXTRA SMALL
+========================================================= */
+@media (max-width: 320px) {
+  .admin-dashboard {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .admin-room-section {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .admin-room-card {
+    grid-template-columns: 42px minmax(0, 1fr);
+    padding: 8px;
+    gap: 7px;
+  }
+  .admin-room-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+  }
+  .admin-room-number span:first-child {
+    font-size: 0.43rem;
+  }
+  .admin-room-number span:last-child {
+    font-size: 0.85rem;
+  }
+  .admin-room-info h3 {
+    font-size: 0.74rem;
+  }
+  .admin-room-info p {
+    font-size: 0.65rem;
+  }
+  .room-status {
+    font-size: 0.67rem;
+  }
+  .availability-button {
+    height: 40px;
+    min-height: 40px;
+    font-size: 0.65rem;
   }
 }
 /* =========================================================
    TOUCH DEVICES
 ========================================================= */
 @media (hover: none) {
-  .admin-stat-card:hover {
-    transform: none;
-  }
-  .admin-room-card:hover {
-    transform: none;
-  }
-  .admin-room-card:hover .admin-room-number {
-    transform: none;
-  }
-  .admin-logout:hover {
-    transform: none;
-  }
+  .admin-stat-card:hover,
+  .admin-room-card:hover,
+  .admin-logout:hover,
   .availability-button:hover {
     transform: none;
   }
 }
 /* =========================================================
-   REDUCE MOTION
+   ACCESSIBILITY
+========================================================= */
+.admin-logout:focus-visible,
+.availability-button:focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
 ========================================================= */
 @media (prefers-reduced-motion: reduce) {
-  .admin-dashboard,
-  .admin-dashboard-header,
-  .admin-statistics,
-  .admin-room-section,
-  .admin-room-card,
-  .no-admin-rooms {
-    animation: none;
-  }
-  .admin-dashboard::before,
-  .admin-dashboard::after {
-    animation: none;
-  }
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
+  .admin-dashboard *,
+  .admin-dashboard *::before,
+  .admin-dashboard *::after {
+    animation: none !important;
     transition: none !important;
+    scroll-behavior: auto !important;
   }
 }/*# sourceMappingURL=AdminDashboard.css.map */
