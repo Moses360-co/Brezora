@@ -1,232 +1,332 @@
 /* =========================================
-   BREZORA ABOUT SECTION
-   iPhone / Apple Glassmorphism Style
+   BREZORA — ABOUT SECTION
+   Smooth Luxury Glassmorphism
+========================================= */
+
+$primary: #0f766e;
+$primary-light: #14b8a6;
+$accent: #d4af37;
+
+$text: #f8fafc;
+$text-soft: rgba(255, 255, 255, 0.88);
+$text-muted: rgba(255, 255, 255, 0.72);
+
+$glass-light: rgba(255, 255, 255, 0.15);
+$glass-soft: rgba(255, 255, 255, 0.07);
+$glass-border: rgba(255, 255, 255, 0.20);
+
+$ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+
+/* =========================================
+   ABOUT MAIN
 ========================================= */
 
 .about {
-  position: relative;
-
-  width: 100%;
   min-height: 100vh;
+  padding: 100px 20px 60px;
+
+  position: relative;
+  overflow: hidden;
+
+  color: $text;
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  animation: aboutFadeIn 1s ease both;
 
-  overflow: hidden;
+  /* -----------------------------------------
+     SOFT TEAL LIGHT
+  ----------------------------------------- */
 
-  animation: fadeIn 1s ease-in-out;
+  &::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: -160px;
+    left: -150px;
+
+    border-radius: 50%;
+
+    background: rgba(20, 184, 166, 0.12);
+
+    filter: blur(110px);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation: glowFloat 10s ease-in-out infinite;
+  }
+
+  /* -----------------------------------------
+     SOFT GOLD LIGHT
+  ----------------------------------------- */
+
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    width: 380px;
+    height: 380px;
+
+    right: -150px;
+    bottom: -140px;
+
+    border-radius: 50%;
+
+    background: rgba(212, 175, 55, 0.08);
+
+    filter: blur(110px);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation: glowFloatReverse 12s ease-in-out infinite;
+  }
+
+  /* -----------------------------------------
+     GLASS OVERLAY
+  ----------------------------------------- */
+
+  .about-overlay {
+    position: relative;
+
+    z-index: 1;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 20px 10px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
 }
+
 
 /* =========================================
-   BACKGROUND DARK GLASS
-========================================= */
-
-.overlay {
-  position: relative;
-
-  width: 100%;
-  min-height: 100vh;
-
-  padding: 90px 20px;
-
-  display: flex;
-  align-items: center;
-
-  background: rgba(0, 0, 0, 0.38);
-
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-/* =========================================
-   BACKGROUND LIGHT EFFECTS
-========================================= */
-
-.about::before {
-  content: "";
-
-  position: absolute;
-
-  width: 350px;
-  height: 350px;
-
-  top: -100px;
-  left: -80px;
-
-  background: rgba(255, 255, 255, 0.10);
-
-  border-radius: 50%;
-
-  filter: blur(90px);
-
-  pointer-events: none;
-}
-
-.about::after {
-  content: "";
-
-  position: absolute;
-
-  width: 300px;
-  height: 300px;
-
-  bottom: -100px;
-  right: -60px;
-
-  background: rgba(255, 255, 255, 0.08);
-
-  border-radius: 50%;
-
-  filter: blur(90px);
-
-  pointer-events: none;
-}
-
-/* =========================================
-   CONTAINER
+   MAIN CONTAINER
 ========================================= */
 
 .about-container {
   position: relative;
+
   z-index: 2;
 
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
 
-  margin: auto;
+  margin: 0 auto;
 
-  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+
+  gap: 42px;
+
+  color: $text;
 }
+
 
 /* =========================================
    HEADER
 ========================================= */
 
 .about-header {
+  max-width: 760px;
+
+  margin: 0 auto;
+
   text-align: center;
 
-  max-width: 750px;
+  animation: headerReveal 1s $ease-smooth both;
 
-  margin: 0 auto 55px;
+  /* -----------------------------------------
+     BADGE
+  ----------------------------------------- */
 
-  animation: slideDown 0.9s ease;
+  .about-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    padding: 9px 18px;
+
+    border-radius: 50px;
+
+    color: $text-soft;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.055)
+      );
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.18),
+      inset 0 1px 1px rgba(255, 255, 255, 0.20);
+
+    font-size: 11px;
+    font-weight: 650;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    transition:
+      transform 0.4s $ease-smooth,
+      background 0.4s ease,
+      box-shadow 0.4s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.19),
+          rgba(255, 255, 255, 0.07)
+        );
+
+      box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.22),
+        inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  /* -----------------------------------------
+     TITLE
+  ----------------------------------------- */
+
+  h2 {
+    margin: 0 0 16px;
+
+    color: #ffffff;
+
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    letter-spacing: -1.4px;
+
+    text-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.35);
+
+    span {
+      display: block;
+
+      margin-top: 5px;
+
+      color: rgba(255, 255, 255, 0.68);
+
+      font-weight: 600;
+    }
+  }
+
+  /* -----------------------------------------
+     DESCRIPTION
+  ----------------------------------------- */
+
+  p {
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    color: $text-muted;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    letter-spacing: 0.1px;
+  }
 }
 
-/* SMALL BADGE */
-
-.about-badge {
-  display: inline-block;
-
-  padding: 8px 17px;
-
-  margin-bottom: 18px;
-
-  border-radius: 50px;
-
-  font-size: 0.72rem;
-  font-weight: 600;
-
-  letter-spacing: 2px;
-
-  color: rgba(255, 255, 255, 0.85);
-
-  background: rgba(255, 255, 255, 0.10);
-
-  border: 1px solid rgba(255, 255, 255, 0.20);
-
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-}
-
-/* TITLE */
-
-.about-header h2 {
-  margin: 0 0 18px;
-
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-
-  line-height: 1.15;
-
-  font-weight: 700;
-
-  letter-spacing: -1.5px;
-
-  color: #ffffff;
-
-  text-shadow:
-    0 5px 25px rgba(0, 0, 0, 0.45);
-}
-
-.about-header h2 span {
-  display: block;
-
-  color: rgba(255, 255, 255, 0.70);
-}
-
-/* DESCRIPTION */
-
-.about-header p {
-  max-width: 680px;
-
-  margin: auto;
-
-  font-size: 1rem;
-
-  line-height: 1.8;
-
-  color: rgba(255, 255, 255, 0.78);
-}
 
 /* =========================================
-   CONTENT
+   CONTENT GRID
 ========================================= */
 
 .about-content {
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
 
   gap: 28px;
 }
 
+
 /* =========================================
-   GLASS CARDS
+   COMMON GLASS CARDS
 ========================================= */
 
-.glass-card {
+.about-text,
+.about-features {
   position: relative;
 
-  padding: 35px;
+  min-width: 0;
 
-  border-radius: 30px;
+  padding: 32px;
+
+  border-radius: 28px;
 
   background:
     linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.06)
+      rgba(255, 255, 255, 0.045)
     );
 
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid $glass-border;
 
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter:
+    blur(25px) saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(25px) saturate(140%);
 
   box-shadow:
-    0 25px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    0 22px 55px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(20, 184, 166, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.20);
 
   overflow: hidden;
 
+  box-sizing: border-box;
+
   transition:
-    transform 0.4s ease,
-    background 0.4s ease,
-    border-color 0.4s ease;
+    transform 0.55s $ease-smooth,
+    background 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.55s ease;
+
+  /* -----------------------------------------
+     GLASS TOP REFLECTION
+  ----------------------------------------- */
 
   &::before {
     content: "";
@@ -239,38 +339,145 @@
     width: 100%;
     height: 1px;
 
-    background: rgba(255, 255, 255, 0.55);
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.85),
+        transparent
+      );
 
-    opacity: 0.5;
+    opacity: 0.7;
+
+    z-index: 2;
   }
 
+  /* -----------------------------------------
+     SOFT INNER LIGHT
+  ----------------------------------------- */
+
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -120px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    filter: blur(35px);
+
+    pointer-events: none;
+
+    transition:
+      transform 0.8s $ease-smooth,
+      opacity 0.6s ease;
+  }
+
+  /* -----------------------------------------
+     HOVER
+  ----------------------------------------- */
+
   &:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
 
     background:
       linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.20),
-        rgba(255, 255, 255, 0.08)
+        rgba(255, 255, 255, 0.19),
+        rgba(255, 255, 255, 0.065)
       );
 
-    border-color: rgba(255, 255, 255, 0.35);
+    border-color:
+      rgba(255, 255, 255, 0.30);
 
     box-shadow:
-      0 30px 70px rgba(0, 0, 0, 0.35),
-      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+      0 28px 65px rgba(0, 0, 0, 0.30),
+      0 0 35px rgba(20, 184, 166, 0.07),
+      inset 0 1px 1px rgba(255, 255, 255, 0.25);
+
+    &::after {
+      transform: translate(-25px, 25px);
+      opacity: 1;
+    }
   }
 }
+
+
+/* =========================================
+   ABOUT TEXT CARD
+========================================= */
+
+.about-text {
+  animation:
+    cardRevealLeft 0.9s 0.15s $ease-smooth both;
+
+  h3 {
+    margin: 0 0 18px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 650;
+
+    letter-spacing: -0.3px;
+  }
+
+  p {
+    margin: 0 0 14px;
+
+    color: $text-muted;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+/* =========================================
+   FEATURES CARD
+========================================= */
+
+.about-features {
+  animation:
+    cardRevealRight 0.9s 0.25s $ease-smooth both;
+
+  h3 {
+    margin: 0 0 18px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 650;
+
+    letter-spacing: -0.3px;
+  }
+}
+
 
 /* =========================================
    CARD ICON
 ========================================= */
 
 .card-icon {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -278,62 +485,51 @@
 
   border-radius: 17px;
 
-  font-size: 1.4rem;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.055)
+    );
 
-  background: rgba(255, 255, 255, 0.12);
-
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.20);
 
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.25),
-    0 8px 20px rgba(0, 0, 0, 0.15);
+    0 10px 25px rgba(0, 0, 0, 0.14),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22);
+
+  font-size: 23px;
+
+  transition:
+    transform 0.5s $ease-smooth,
+    background 0.4s ease,
+    box-shadow 0.5s ease;
 }
+
 
 /* =========================================
-   CARD TITLES
+   ICON HOVER
 ========================================= */
 
-.glass-card h3 {
-  margin: 0 0 18px;
+.about-text:hover .card-icon,
+.about-features:hover .card-icon {
+  transform:
+    translateY(-2px)
+    scale(1.04);
 
-  font-size: 1.35rem;
+  background:
+    rgba(20, 184, 166, 0.13);
 
-  font-weight: 600;
-
-  color: #ffffff;
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.18),
+    0 0 20px rgba(20, 184, 166, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
 }
+
 
 /* =========================================
-   ABOUT TEXT
+   FEATURE LIST
 ========================================= */
-
-.about-text {
-  animation: slideLeft 1s ease;
-}
-
-.about-text p {
-  margin: 0 0 17px;
-
-  color: rgba(255, 255, 255, 0.78);
-
-  font-size: 0.98rem;
-
-  line-height: 1.8;
-}
-
-.about-text p:last-child {
-  margin-bottom: 0;
-}
-
-/* =========================================
-   FEATURES
-========================================= */
-
-.about-features {
-  animation: slideRight 1s ease;
-}
-
-/* LIST */
 
 .about-features ul {
   list-style: none;
@@ -342,78 +538,127 @@
   margin: 0;
 }
 
-/* LIST ITEM */
+
+/* =========================================
+   FEATURE ITEM
+========================================= */
 
 .about-features li {
   display: flex;
+
   align-items: center;
 
   gap: 13px;
 
-  padding: 14px 15px;
+  padding: 13px 15px;
 
   margin-bottom: 10px;
 
   border-radius: 16px;
 
-  background: rgba(255, 255, 255, 0.06);
+  background:
+    rgba(255, 255, 255, 0.05);
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
 
-  color: rgba(255, 255, 255, 0.82);
+  color:
+    rgba(255, 255, 255, 0.84);
 
-  font-size: 0.94rem;
+  font-size: 13px;
 
   transition:
-    transform 0.3s ease,
-    background 0.3s ease,
-    border-color 0.3s ease;
+    transform 0.4s $ease-smooth,
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+
+    line-height: 1.5;
+  }
+
+  &:hover {
+    transform: translateX(4px);
+
+    background:
+      rgba(255, 255, 255, 0.085);
+
+    border-color:
+      rgba(255, 255, 255, 0.17);
+
+    box-shadow:
+      0 7px 18px rgba(0, 0, 0, 0.10);
+  }
 }
 
-.about-features li:last-child {
-  margin-bottom: 0;
-}
 
-/* CHECK ICON */
+/* =========================================
+   CHECK ICON
+========================================= */
 
 .about-features li span {
-  width: 27px;
-  height: 27px;
+  width: 29px;
+  height: 29px;
 
   flex-shrink: 0;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, 0.13);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 118, 110, 0.72),
+      rgba(20, 184, 166, 0.50)
+    );
 
-  border: 1px solid rgba(255, 255, 255, 0.18);
-
-  color: #ffffff;
-
-  font-size: 0.8rem;
-}
-
-/* HOVER */
-
-.about-features li:hover {
-  transform: translateX(6px);
-
-  background: rgba(255, 255, 255, 0.12);
-
-  border-color: rgba(255, 255, 255, 0.20);
+  border:
+    1px solid rgba(255, 255, 255, 0.18);
 
   color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 5px 15px rgba(15, 118, 110, 0.16),
+    inset 0 1px 1px rgba(255, 255, 255, 0.23);
+
+  transition:
+    transform 0.4s $ease-smooth,
+    box-shadow 0.4s ease;
 }
+
+
+/* =========================================
+   CHECK ICON HOVER
+========================================= */
+
+.about-features li:hover span {
+  transform: scale(1.06);
+
+  box-shadow:
+    0 7px 18px rgba(15, 118, 110, 0.20),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28);
+}
+
 
 /* =========================================
    ANIMATIONS
 ========================================= */
 
-@keyframes fadeIn {
+@keyframes aboutFadeIn {
   from {
     opacity: 0;
   }
@@ -423,10 +668,11 @@
   }
 }
 
-@keyframes slideDown {
+
+@keyframes headerReveal {
   from {
     opacity: 0;
-    transform: translateY(-35px);
+    transform: translateY(-24px);
   }
 
   to {
@@ -435,10 +681,11 @@
   }
 }
 
-@keyframes slideLeft {
+
+@keyframes cardRevealLeft {
   from {
     opacity: 0;
-    transform: translateX(-45px);
+    transform: translateX(-35px);
   }
 
   to {
@@ -447,10 +694,11 @@
   }
 }
 
-@keyframes slideRight {
+
+@keyframes cardRevealRight {
   from {
     opacity: 0;
-    transform: translateX(45px);
+    transform: translateX(35px);
   }
 
   to {
@@ -458,77 +706,273 @@
     transform: translateX(0);
   }
 }
+
+
+/* =========================================
+   SOFT BACKGROUND ANIMATION
+========================================= */
+
+@keyframes glowFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(25px, 20px, 0);
+  }
+}
+
+
+@keyframes glowFloatReverse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-20px, -18px, 0);
+  }
+}
+
 
 /* =========================================
    TABLET
 ========================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .about {
+    padding:
+      90px 18px
+      50px;
 
-  .overlay {
-    padding: 70px 18px;
-  }
-
-  .about-header {
-    margin-bottom: 38px;
+    background-attachment: scroll;
   }
 
   .about-content {
-    grid-template-columns: 1fr;
-
     gap: 22px;
   }
 
-  .glass-card {
+  .about-text,
+  .about-features {
     padding: 28px;
-
-    border-radius: 26px;
   }
 }
+
 
 /* =========================================
    MOBILE
 ========================================= */
 
+@media (max-width: 768px) {
+  .about {
+    min-height: auto;
+
+    padding:
+      85px 12px
+      40px;
+
+    background-position: center;
+
+    background-attachment: scroll;
+
+    .about-overlay {
+      min-height: auto;
+
+      padding:
+        15px 5px;
+    }
+  }
+
+  .about-container {
+    gap: 30px;
+  }
+
+  .about-header {
+    h2 {
+      font-size:
+        clamp(2rem, 8vw, 2.7rem);
+
+      letter-spacing: -1px;
+    }
+
+    p {
+      font-size: 13px;
+
+      line-height: 1.7;
+    }
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .about-text,
+  .about-features {
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 27px;
+
+    border-radius: 24px;
+
+    animation:
+      mobileCardReveal 0.8s $ease-smooth both;
+  }
+
+  .about-text:hover,
+  .about-features:hover {
+    transform: translateY(-3px);
+  }
+
+  .about-features li:hover {
+    transform: translateX(3px);
+  }
+}
+
+
+/* =========================================
+   MOBILE CARD ANIMATION
+========================================= */
+
+@keyframes mobileCardReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
 @media (max-width: 480px) {
-
-  .overlay {
-    padding: 55px 15px;
+  .about {
+    padding:
+      75px 10px
+      30px;
   }
 
-  .about-header h2 {
-    font-size: 2rem;
+  .about-header {
+    h2 {
+      font-size: 1.95rem;
+    }
 
-    letter-spacing: -0.8px;
+    p {
+      font-size: 12.5px;
+    }
   }
 
-  .about-header p {
-    font-size: 0.9rem;
+  .about-text,
+  .about-features {
+    padding:
+      22px 18px;
+
+    border-radius: 22px;
   }
 
-  .about-badge {
-    font-size: 0.65rem;
+  .card-icon {
+    width: 48px;
+    height: 48px;
 
-    padding: 7px 14px;
+    margin-bottom: 18px;
+
+    border-radius: 15px;
+
+    font-size: 20px;
   }
 
-  .glass-card {
-    padding: 23px;
-
-    border-radius: 23px;
-  }
-
-  .glass-card h3 {
-    font-size: 1.2rem;
+  .about-text h3,
+  .about-features h3 {
+    font-size: 18px;
   }
 
   .about-text p {
-    font-size: 0.9rem;
+    font-size: 12.5px;
+
+    line-height: 1.75;
   }
 
   .about-features li {
-    font-size: 0.85rem;
+    gap: 10px;
 
-    padding: 12px;
+    padding: 11px 12px;
+
+    font-size: 12px;
+  }
+
+  .about-features li span {
+    width: 26px;
+    height: 26px;
+
+    font-size: 10px;
+  }
+}
+
+
+/* =========================================
+   EXTRA SMALL DEVICES
+========================================= */
+
+@media (max-width: 350px) {
+  .about {
+    padding:
+      70px 8px
+      28px;
+  }
+
+  .about-text,
+  .about-features {
+    padding:
+      19px 15px;
+  }
+
+  .about-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .about-header p {
+    font-size: 12px;
+  }
+
+  .about-features li {
+    font-size: 11.5px;
+  }
+}
+
+
+/* =========================================
+   REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .about,
+  .about-header,
+  .about-text,
+  .about-features,
+  .about::before,
+  .about::after {
+    animation: none;
+  }
+
+  .about-text,
+  .about-features,
+  .card-icon,
+  .about-features li,
+  .about-badge {
+    transition: none;
   }
 }

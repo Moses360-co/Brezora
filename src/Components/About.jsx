@@ -1,5 +1,7 @@
+
 import React from "react";
 import "./About.scss";
+
 import bgImage from "../assets/bg.jpg";
 
 const About = () => {
@@ -8,8 +10,7 @@ const About = () => {
       className="about"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <div className="overlay">
-
+      <div className="about-overlay">
         <div className="about-container">
 
           {/* HEADER */}
@@ -18,7 +19,7 @@ const About = () => {
 
             <h2>
               Your Peaceful Stay,
-              <span> Beautifully Simplified.</span>
+              <span>Beautifully Simplified.</span>
             </h2>
 
             <p>
@@ -33,8 +34,7 @@ const About = () => {
 
             {/* ABOUT CARD */}
             <div className="about-text glass-card">
-
-              <div className="card-icon">
+              <div className="card-icon" aria-hidden="true">
                 🏡
               </div>
 
@@ -49,13 +49,11 @@ const About = () => {
                 Our mission is to make booking easy while ensuring a
                 warm and homely experience for every guest.
               </p>
-
             </div>
 
             {/* FEATURES CARD */}
             <div className="about-features glass-card">
-
-              <div className="card-icon">
+              <div className="card-icon" aria-hidden="true">
                 ✨
               </div>
 
@@ -63,35 +61,33 @@ const About = () => {
 
               <ul>
                 <li>
-                  <span>✓</span>
-                  Handpicked comfortable cottages
+                  <span aria-hidden="true">✓</span>
+                  <p>Handpicked comfortable cottages</p>
                 </li>
 
                 <li>
-                  <span>✓</span>
-                  Simple and secure booking
+                  <span aria-hidden="true">✓</span>
+                  <p>Simple and secure booking</p>
                 </li>
 
                 <li>
-                  <span>✓</span>
-                  Peaceful nature stay experience
+                  <span aria-hidden="true">✓</span>
+                  <p>Peaceful nature stay experience</p>
                 </li>
 
                 <li>
-                  <span>✓</span>
-                  Friendly customer support
+                  <span aria-hidden="true">✓</span>
+                  <p>Friendly customer support</p>
                 </li>
               </ul>
-
             </div>
 
           </div>
-
         </div>
-
       </div>
     </section>
   );
 };
 
 export default About;
+

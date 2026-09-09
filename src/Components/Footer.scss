@@ -1,6 +1,6 @@
 /* =========================================
    BREZORA — FOOTER
-   iPhone Glassmorphism Style
+   Smooth Luxury Glassmorphism
 ========================================= */
 
 $primary: #0f766e;
@@ -8,7 +8,13 @@ $primary-light: #14b8a6;
 $accent: #d4af37;
 
 $text: #f8fafc;
+$text-soft: rgba(255, 255, 255, 0.88);
 $text-muted: rgba(255, 255, 255, 0.72);
+
+$glass-border: rgba(255, 255, 255, 0.20);
+
+$ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
 
 /* =========================================
    FOOTER
@@ -23,10 +29,6 @@ $text-muted: rgba(255, 255, 255, 0.72);
 
   overflow: hidden;
 
-  /* =========================================
-     SINGLE ONLINE FULL BACKGROUND IMAGE
-  ========================================= */
-
   background-image:
     linear-gradient(
       rgba(4, 18, 17, 0.72),
@@ -35,12 +37,19 @@ $text-muted: rgba(255, 255, 255, 0.72);
     url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2400&q=90");
 
   background-size: cover;
+
   background-position: center;
+
   background-repeat: no-repeat;
+
   background-attachment: fixed;
 
+  animation:
+    footerFadeIn 1s ease both;
+
+
   /* =========================================
-     AMBIENT TEAL GLOW
+     SOFT TEAL GLOW
   ========================================= */
 
   &::before {
@@ -48,26 +57,30 @@ $text-muted: rgba(255, 255, 255, 0.72);
 
     position: absolute;
 
-    width: 350px;
-    height: 350px;
+    width: 420px;
+    height: 420px;
 
-    top: -150px;
-    left: -150px;
+    top: -170px;
+    left: -160px;
 
     border-radius: 50%;
 
     background:
-      rgba(20, 184, 166, 0.13);
+      rgba(20, 184, 166, 0.11);
 
-    filter: blur(110px);
+    filter: blur(115px);
 
     pointer-events: none;
 
     z-index: 0;
+
+    animation:
+      glowFloat 11s ease-in-out infinite;
   }
 
+
   /* =========================================
-     AMBIENT GOLD GLOW
+     SOFT GOLD GLOW
   ========================================= */
 
   &::after {
@@ -75,24 +88,28 @@ $text-muted: rgba(255, 255, 255, 0.72);
 
     position: absolute;
 
-    width: 320px;
-    height: 320px;
+    width: 380px;
+    height: 380px;
 
-    right: -150px;
-    bottom: -150px;
+    right: -160px;
+    bottom: -160px;
 
     border-radius: 50%;
 
     background:
-      rgba(212, 175, 55, 0.08);
+      rgba(212, 175, 55, 0.075);
 
-    filter: blur(110px);
+    filter: blur(115px);
 
     pointer-events: none;
 
     z-index: 0;
+
+    animation:
+      glowFloatReverse 13s ease-in-out infinite;
   }
 }
+
 
 /* =========================================
    MAIN GLASS CONTAINER
@@ -103,9 +120,11 @@ $text-muted: rgba(255, 255, 255, 0.72);
 
   z-index: 2;
 
+  width: 100%;
+
   max-width: 1200px;
 
-  margin: auto;
+  margin: 0 auto;
 
   padding: 35px;
 
@@ -125,20 +144,25 @@ $text-muted: rgba(255, 255, 255, 0.72);
     blur(30px) saturate(140%);
 
   border:
-    1px solid
-    rgba(255, 255, 255, 0.20);
+    1px solid rgba(255, 255, 255, 0.20);
 
   box-shadow:
-    0 25px 60px
-    rgba(0, 0, 0, 0.35),
-
+    0 25px 60px rgba(0, 0, 0, 0.30),
     inset 0 1px 1px
-    rgba(255, 255, 255, 0.20);
+      rgba(255, 255, 255, 0.20);
 
   overflow: hidden;
 
+  animation:
+    containerReveal
+    0.9s
+    0.1s
+    $ease-smooth
+    both;
+
+
   /* =========================================
-     IPHONE GLASS REFLECTION
+     TOP GLASS REFLECTION
   ========================================= */
 
   &::before {
@@ -163,6 +187,7 @@ $text-muted: rgba(255, 255, 255, 0.72);
     z-index: 3;
   }
 
+
   /* =========================================
      SOFT GLASS REFLECTION
   ========================================= */
@@ -177,8 +202,8 @@ $text-muted: rgba(255, 255, 255, 0.72);
     background:
       linear-gradient(
         125deg,
-        rgba(255, 255, 255, 0.10),
-        transparent 40%
+        rgba(255, 255, 255, 0.09),
+        transparent 42%
       );
 
     pointer-events: none;
@@ -186,6 +211,7 @@ $text-muted: rgba(255, 255, 255, 0.72);
     z-index: 1;
   }
 }
+
 
 /* =========================================
    FOOTER GRID
@@ -199,10 +225,11 @@ $text-muted: rgba(255, 255, 255, 0.72);
   display: grid;
 
   grid-template-columns:
-    repeat(3, 1fr);
+    repeat(3, minmax(0, 1fr));
 
   gap: 22px;
 }
+
 
 /* =========================================
    FOOTER CARD
@@ -210,6 +237,8 @@ $text-muted: rgba(255, 255, 255, 0.72);
 
 .footer-card {
   position: relative;
+
+  min-width: 0;
 
   padding: 24px;
 
@@ -231,26 +260,45 @@ $text-muted: rgba(255, 255, 255, 0.72);
     blur(22px) saturate(140%);
 
   border:
-    1px solid
-    rgba(255, 255, 255, 0.16);
+    1px solid rgba(255, 255, 255, 0.16);
 
   box-shadow:
-    0 15px 35px
-    rgba(0, 0, 0, 0.28),
-
+    0 15px 35px rgba(0, 0, 0, 0.23),
     inset 0 1px 1px
-    rgba(255, 255, 255, 0.14);
+      rgba(255, 255, 255, 0.14);
 
   overflow: hidden;
 
-  transition:
-    transform 0.35s ease,
-    border-color 0.35s ease,
-    box-shadow 0.35s ease,
-    background 0.35s ease;
+  box-sizing: border-box;
+
+  opacity: 0;
+
+  animation:
+    footerCardReveal
+    0.8s
+    $ease-smooth
+    forwards;
+
 
   /* =========================================
-     TOP GLASS REFLECTION
+     STAGGERED CARD ANIMATION
+  ========================================= */
+
+  &:nth-child(1) {
+    animation-delay: 0.25s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.38s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.51s;
+  }
+
+
+  /* =========================================
+     TOP REFLECTION
   ========================================= */
 
   &::before {
@@ -271,48 +319,88 @@ $text-muted: rgba(255, 255, 255, 0.72);
         rgba(255, 255, 255, 0.70),
         transparent
       );
+
+    opacity: 0.7;
   }
+
+
+  /* =========================================
+     CARD HOVER
+  ========================================= */
+
+  transition:
+    transform 0.55s $ease-smooth,
+    border-color 0.45s ease,
+    box-shadow 0.55s ease,
+    background 0.45s ease;
+
 
   &:hover {
     transform:
-      translateY(-6px);
+      translateY(-5px);
 
     background:
-      rgba(255, 255, 255, 0.13);
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.16),
+        rgba(255, 255, 255, 0.055)
+      );
 
     border-color:
-      rgba(255, 255, 255, 0.28);
+      rgba(255, 255, 255, 0.27);
 
     box-shadow:
-      0 22px 45px
-      rgba(0, 0, 0, 0.35),
-
+      0 23px 48px rgba(0, 0, 0, 0.30),
       0 0 28px
-      rgba(20, 184, 166, 0.08);
+        rgba(20, 184, 166, 0.07),
+      inset 0 1px 1px
+        rgba(255, 255, 255, 0.20);
   }
+
+
+  /* =========================================
+     CARD TITLE
+  ========================================= */
 
   h3 {
     margin: 0 0 14px;
 
-    color: $accent;
+    color:
+      rgba(255, 255, 255, 0.94);
 
     font-size: 18px;
 
     font-weight: 650;
 
     letter-spacing: -0.2px;
+
+    transition:
+      color 0.35s ease;
   }
+
+
+  /* =========================================
+     CARD TEXT
+  ========================================= */
 
   p {
     margin: 0;
 
-    color: $text-muted;
+    color:
+      $text-muted;
 
     font-size: 14px;
 
     line-height: 1.7;
   }
+
+
+  &:hover h3 {
+    color:
+      $accent;
+  }
 }
+
 
 /* =========================================
    SOCIAL LINKS
@@ -324,6 +412,7 @@ $text-muted: rgba(255, 255, 255, 0.72);
   flex-direction: column;
 
   gap: 9px;
+
 
   a {
     display: flex;
@@ -342,8 +431,9 @@ $text-muted: rgba(255, 255, 255, 0.72);
     font-size: 14px;
 
     transition:
-      color 0.3s ease,
-      transform 0.3s ease;
+      color 0.35s ease,
+      transform 0.4s $ease-smooth;
+
 
     &:hover {
       color:
@@ -354,6 +444,7 @@ $text-muted: rgba(255, 255, 255, 0.72);
     }
   }
 }
+
 
 /* =========================================
    CONTACT / INFO LINKS
@@ -366,13 +457,15 @@ $text-muted: rgba(255, 255, 255, 0.72);
   text-decoration: none;
 
   transition:
-    color 0.3s ease;
+    color 0.35s ease;
+
 
   &:hover {
     color:
       $primary-light;
   }
 }
+
 
 /* =========================================
    FOOTER BOTTOM
@@ -397,7 +490,131 @@ $text-muted: rgba(255, 255, 255, 0.72);
   border-top:
     1px solid
     rgba(255, 255, 255, 0.10);
+
+  animation:
+    bottomReveal
+    0.8s
+    0.7s
+    $ease-smooth
+    both;
 }
+
+
+/* =========================================
+   PAGE FADE
+========================================= */
+
+@keyframes footerFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   MAIN CONTAINER REVEAL
+========================================= */
+
+@keyframes containerReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================
+   FOOTER CARD REVEAL
+========================================= */
+
+@keyframes footerCardReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* =========================================
+   BOTTOM REVEAL
+========================================= */
+
+@keyframes bottomReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* =========================================
+   SOFT TEAL GLOW ANIMATION
+========================================= */
+
+@keyframes glowFloat {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(25px, 20px, 0);
+  }
+}
+
+
+/* =========================================
+   SOFT GOLD GLOW ANIMATION
+========================================= */
+
+@keyframes glowFloatReverse {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(-20px, -18px, 0);
+  }
+}
+
 
 /* =========================================
    TABLET
@@ -405,26 +622,41 @@ $text-muted: rgba(255, 255, 255, 0.72);
 
 @media (max-width: 900px) {
   .footer {
-    padding: 65px 18px 22px;
+    padding:
+      65px 18px
+      22px;
 
-    background-attachment: scroll;
+    background-attachment:
+      scroll;
   }
+
 
   .footer-overlay {
-    padding: 28px;
+    padding:
+      28px;
   }
+
 
   .footer-grid {
     grid-template-columns:
-      1fr 1fr;
+      repeat(2, minmax(0, 1fr));
 
     gap: 18px;
   }
 
+
   .footer-card {
-    border-radius: 22px;
+    border-radius:
+      22px;
+  }
+
+
+  .footer-card:nth-child(3) {
+    grid-column:
+      1 / -1;
   }
 }
+
 
 /* =========================================
    MOBILE
@@ -432,50 +664,85 @@ $text-muted: rgba(255, 255, 255, 0.72);
 
 @media (max-width: 600px) {
   .footer {
-    padding: 50px 12px 18px;
+    padding:
+      50px 12px
+      18px;
 
-    background-position: center;
+    background-position:
+      center;
 
-    background-attachment: scroll;
+    background-attachment:
+      scroll;
   }
+
 
   .footer-overlay {
-    padding: 20px;
+    padding:
+      20px;
 
-    border-radius: 25px;
+    border-radius:
+      25px;
   }
+
 
   .footer-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
 
-    gap: 16px;
+    gap:
+      16px;
   }
+
 
   .footer-card {
-    min-height: auto;
+    min-height:
+      auto;
 
-    padding: 21px;
+    padding:
+      21px;
 
-    border-radius: 21px;
+    border-radius:
+      21px;
   }
+
+
+  .footer-card:nth-child(3) {
+    grid-column:
+      auto;
+  }
+
 
   .footer-card h3 {
-    font-size: 17px;
+    font-size:
+      17px;
   }
+
 
   .footer-card p,
   .footer-social a {
-    font-size: 13px;
+    font-size:
+      13px;
   }
+
 
   .footer-bottom {
-    margin-top: 20px;
+    margin-top:
+      20px;
 
-    padding-top: 16px;
+    padding-top:
+      16px;
 
-    font-size: 12px;
+    font-size:
+      12px;
+  }
+
+
+  .footer-card:hover {
+    transform:
+      translateY(-3px);
   }
 }
+
 
 /* =========================================
    SMALL MOBILE
@@ -483,16 +750,89 @@ $text-muted: rgba(255, 255, 255, 0.72);
 
 @media (max-width: 400px) {
   .footer {
-    padding: 40px 10px 15px;
+    padding:
+      40px 10px
+      15px;
   }
+
 
   .footer-overlay {
-    padding: 16px;
+    padding:
+      16px;
 
-    border-radius: 22px;
+    border-radius:
+      22px;
   }
 
+
   .footer-card {
-    padding: 18px;
+    padding:
+      18px;
+  }
+}
+
+
+/* =========================================
+   EXTRA SMALL
+========================================= */
+
+@media (max-width: 350px) {
+  .footer {
+    padding:
+      35px 8px
+      14px;
+  }
+
+
+  .footer-overlay {
+    padding:
+      14px;
+
+    border-radius:
+      20px;
+  }
+
+
+  .footer-card {
+    padding:
+      16px;
+  }
+
+
+  .footer-card h3 {
+    font-size:
+      16px;
+  }
+
+
+  .footer-card p,
+  .footer-social a {
+    font-size:
+      12px;
+  }
+}
+
+
+/* =========================================
+   REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .footer,
+  .footer-overlay,
+  .footer-card,
+  .footer-bottom,
+  .footer::before,
+  .footer::after {
+    animation:
+      none;
+  }
+
+
+  .footer-card,
+  .footer-social a,
+  .footer-card h3 {
+    transition:
+      none;
   }
 }

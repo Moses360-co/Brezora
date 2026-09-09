@@ -1,32 +1,82 @@
-import React, { useState } from "react";
-import NavBar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
+import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import About from "./Components/About";
 import Services from "./Components/Services";
 import Contact from "./Components/Contact";
+import Footer from "./Components/Footer";
 
+import AdminLogin from "./Admin/AdminLogin";
+import AdminDashboard from "./Admin/AdminDashboard";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
 function App() {
-  const [page, setPage] = useState("home");
-
   return (
-    <>
-      {/* Navbar ALWAYS visible */}
-      <NavBar setPage={setPage} />
+    <BrowserRouter>
+      {/* ==============================
+          NAVBAR
+      ============================== */}
 
-      {/* Page content ONLY changes */}
-      <main>
-        {page === "home" && <Home/>}
-        {page === "about" && <About />}
-        {page === "services" && <Services />}
-        {page === "contact" && <Contact />}
-      </main>
+      <Navbar />
 
-      {/* Footer ALWAYS visible */}
+      {/* ==============================
+          ROUTES
+      ============================== */}
+
+      <Routes>
+        {/* HOME */}
+        <Route path="/" element={<Home />} />
+
+        {/* ABOUT */}
+        <Route path="/about" element={<About />} />
+
+        {/* SERVICES */}
+        <Route
+          path="/services"
+          element={<Services />}
+        />
+
+        {/* CONTACT */}
+        <Route
+          path="/contact"
+          element={<Contact />}
+        />
+
+        {/* ADMIN LOGIN */}
+        <Route
+          path="/admin"
+          element={<AdminLogin />}
+        />
+
+        {/* ADMIN DASHBOARD */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* FALLBACK */}
+        <Route
+          path="*"
+          element={<Home />}
+        />
+      </Routes>
+
+      {/* ==============================
+          FOOTER
+      ============================== */}
+
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 

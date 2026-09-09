@@ -1,180 +1,692 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
 import "./Home.scss";
 
 import Vedio from "./Vedio";
 import RoomDetails from "./RoomDetails";
+
 import adventure from "../Music/adventure.mp3";
 
-// IMAGES
 import CampfireImg from "../Components/images/Campfire.jpeg";
 import BBQ from "../Components/images/bbq.jpeg";
+
 import bgImage from "../assets/bg.jpg";
 
+import { getRooms } from "../services/roomService";
 
 
-
-
-
-const rooms = [
-  {
-    id: 1,
-    title: "Single Room / Breezora I",
-    time: "Check-out 10:00 AM",
-    price: "₹2000 / Day",
-    // image: DO_Nimport("react").OT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_MEDIA_SRC_TYPES,
-    gallery: [],
-    desc: "Perfect for solo travelers.",
-  },
-  {
-    id: 2,
-    title: "Single Room / Breezora II",
-    time: "Check-out 10:00 AM",
-    price: "₹2000 / Day",
-    image: null,
-    gallery: [],
-    desc: "Premium interiors with view.",
-  },
-  {
-    id: 3,
-    title: "2BHK Villa",
-    time: "Check-out 10:00 AM",
-    price: "₹4000 / Day",
-    image: null,
-    gallery: [],
-    desc: "Perfect for families.",
-  },
-  {
-    id: 4,
-    title: "3BHK Villa",
-    time: "Check-out 10:00 AM",
-    price: "₹6000 / Day",
-    image: null,
-    gallery: [],
-    desc: "Luxury stay with scenic view.",
-  },
-  {
-    id: 5,
-    title: "4BHK Villa",
-    time: "Check-out 10:00 AM",
-    price: "₹8000 / Day",
-    image: null,
-    gallery: [],
-    desc: "Best for large groups.",
-  },
-];
+// =====================================================
+// SERVICES
+// =====================================================
 
 const services = [
+
   {
     img: BBQ,
+
     title: "BBQ",
+
     desc: "Fresh BBQ with grill setup.",
+
     price: "₹1200",
+
     text: "BBQ service",
   },
+
+
   {
     img: CampfireImg,
+
     title: "Campfire",
+
     desc: "Cozy evening fire setup.",
+
     price: "₹1200",
+
     text: "Campfire service",
   },
+
 ];
 
-const Home = () => {
-  const audioRef = useRef(null);
-  const [soundEnabled, setSoundEnabled] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState(null);
 
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.6;
-      audioRef.current.muted = true;
-    }
-  }, []);
+// =====================================================
+// HOME COMPONENT
+// =====================================================
 
-  const enableSound = () => {
-    if (!soundEnabled && audioRef.current) {
-      audioRef.current.muted = false;
-      audioRef.current.play().catch(() => {});
-      setSoundEnabled(true);
-    }
+function Home() {
+
+  const audioRef =
+    useRef(null);
+
+
+  const [soundEnabled, setSoundEnabled] =
+    useState(false);
+
+
+  const [rooms, setRooms] =
+    useState([]);
+
+
+  const [selectedRoom, setSelectedRoom] =
+    useState(null);
+
+
+  // ===================================================
+  // LOAD ROOMS
+  // ===================================================
+
+  const loadRooms = () => {
+
+    const data = getRooms();
+
+    setRooms(data);
   };
 
+
+  // ===================================================
+  // INITIAL LOAD
+  // ===================================================
+
+  useEffect(() => {
+
+    loadRooms();
+
+
+    const handleRoomUpdate = () => {
+
+      loadRooms();
+    };
+
+
+    window.addEventListener(
+      "roomsUpdated",
+      handleRoomUpdate
+    );
+
+
+    return () => {
+
+      window.removeEventListener(
+        "roomsUpdated",
+        handleRoomUpdate
+      );
+
+    };
+
+  }, []);
+
+
+  // ===================================================
+  // MUSIC
+  // ===================================================
+
+  const toggleSound = (event) => {
+
+    event.stopPropagation();
+
+
+    if (!audioRef.current) {
+
+      return;
+    }
+
+
+    if (soundEnabled) {
+
+      audioRef.current.pause();
+
+      setSoundEnabled(false);
+
+      return;
+    }
+
+
+    audioRef.current
+      .play()
+      .then(() => {
+
+        setSoundEnabled(true);
+
+      })
+      .catch(() => {
+
+        console.log(
+          "Audio playback blocked by browser."
+        );
+
+      });
+
+  };
+
+
+  // ===================================================
+  // VIEW ROOM DETAILS
+  // ===================================================
+
+  const handleViewDetails = (room) => {
+
+    setSelectedRoom(room);
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+  };
+
+
+  // ===================================================
+  // BACK TO ROOMS
+  // ===================================================
+
+  const handleBack = () => {
+
+    setSelectedRoom(null);
+
+
+    loadRooms();
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+  };
+
+
+  // ===================================================
+  // RENDER
+  // ===================================================
+
   return (
-    <section
-      className="room-container"
-      style={{ backgroundImage: `url(${bgImage})` }}
-      onClick={enableSound}
-    >
-      {/* AUDIO */}
-      <audio ref={audioRef} loop>
-        <source src={adventure} type="audio/mpeg" />
-      </audio>
+    <>
 
-      {/* MUSIC BUTTON */}
-      <div className={`music-hint ${soundEnabled ? "active" : ""}`}>
-        {soundEnabled ? "🎵 Music Playing" : "🔊 Tap to Enable Music"}
-      </div>
+      {/* =================================================
+          MUSIC BUTTON
+      ================================================= */}
 
-      {/* ROOMS */}
-      {!selectedRoom && (
-        <div className="room-list">
-          {rooms.map((room) => (
-            <div
-              key={room.id}
-              className="room-card"
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedRoom(room);
-              }}
-            >
-              <div className="room-image">
-                <img src={room.image} alt={room.title} />
-              </div>
+      <button
+        type="button"
+        className={`music-control ${
+          soundEnabled ? "active" : ""
+        }`}
+        onClick={toggleSound}
+        aria-label={
+          soundEnabled
+            ? "Pause background music"
+            : "Play background music"
+        }
+      >
 
-              <div className="room-info">
-                <h2>{room.title}</h2>
-                <p>{room.time}</p>
-                <p>{room.desc}</p>
-                <span className="price">{room.price}</span>
-              </div>
+        <span className="music-icon">
+          {soundEnabled ? "🔊" : "🎵"}
+        </span>
+
+
+        <span className="music-content">
+
+          <span className="music-title">
+
+            {soundEnabled
+              ? "Music On"
+              : "Play Music"}
+
+          </span>
+
+
+          <span className="music-subtitle">
+
+            {soundEnabled
+              ? "Brezora ambience"
+              : "Tap to start"}
+
+          </span>
+
+        </span>
+
+
+        <span
+          className="music-bars"
+          aria-hidden="true"
+        >
+
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+
+        </span>
+
+      </button>
+
+
+      {/* =================================================
+          MAIN CONTAINER
+      ================================================= */}
+
+      <section
+        className="room-container"
+        style={{
+          backgroundImage:
+            `url(${bgImage})`,
+        }}
+      >
+
+
+        {/* =================================================
+            BACKGROUND MUSIC
+        ================================================= */}
+
+        <audio
+          ref={audioRef}
+          loop
+        >
+
+          <source
+            src={adventure}
+            type="audio/mpeg"
+          />
+
+        </audio>
+
+
+        {/* =================================================
+            OVERLAY
+        ================================================= */}
+
+        <div className="home-overlay">
+
+
+          {/* =================================================
+              ROOM DETAILS
+          ================================================= */}
+
+          {selectedRoom ? (
+
+            <div className="room-details-wrapper">
+
+              <RoomDetails
+                room={selectedRoom}
+                onBack={handleBack}
+              />
+
             </div>
-          ))}
+
+          ) : (
+
+            <>
+
+
+              {/* =================================================
+                  ROOM LIST
+              ================================================= */}
+
+              <div className="room-list">
+
+
+                {/* =================================================
+                    HEADING
+                ================================================= */}
+
+                <div className="room-heading">
+
+                  <span className="home-section-label">
+                    BREZORA
+                  </span>
+
+
+                  <h1>
+                    Stay at Brezora
+                  </h1>
+
+
+                  <p>
+                    Discover comfortable rooms and
+                    beautiful villas for your perfect stay.
+                  </p>
+
+                </div>
+
+
+                {/* =================================================
+                    NO ROOMS
+                ================================================= */}
+
+                {rooms.length === 0 ? (
+
+                  <div className="no-rooms">
+
+                    <div className="no-rooms-icon">
+                      🏡
+                    </div>
+
+
+                    <h2>
+                      No rooms available
+                    </h2>
+
+
+                    <p>
+                      Please check again later.
+                    </p>
+
+                  </div>
+
+                ) : (
+
+
+                  /* =================================================
+                     ROOM GRID
+                  ================================================= */
+
+                  <div className="rooms-grid">
+
+                    {rooms.map((room) => {
+
+
+                      // --------------------------------------------
+                      // AVAILABILITY
+                      // --------------------------------------------
+
+                      const isUnavailable =
+                        room.available === false;
+
+
+                      // --------------------------------------------
+                      // HOME PAGE IMAGE
+                      // --------------------------------------------
+
+                      const homeImage =
+                        Array.isArray(room.gallery) &&
+                        room.gallery.length > 0
+                          ? room.gallery[0]
+                          : room.image || null;
+
+
+                      return (
+
+                        <article
+                          key={room.id}
+                          className={`room-card ${
+                            isUnavailable
+                              ? "room-unavailable"
+                              : ""
+                          }`}
+                        >
+
+
+                          {/* ======================================
+                              ROOM IMAGE
+                          ====================================== */}
+
+                          <div className="room-image">
+
+
+                            {homeImage ? (
+
+                              <img
+                                src={homeImage}
+                                alt={room.title}
+                                draggable="false"
+                              />
+
+                            ) : (
+
+                              <div className="room-image-placeholder">
+
+                                <span>
+                                  🏡
+                                </span>
+
+
+                                <p>
+                                  Brezora
+                                </p>
+
+                              </div>
+
+                            )}
+
+
+                            {/* ==================================
+                                AVAILABILITY
+                            ================================== */}
+
+                            <div
+                              className={`availability-badge ${
+                                isUnavailable
+                                  ? "unavailable"
+                                  : "available"
+                              }`}
+                            >
+
+                              {isUnavailable
+                                ? "Already Booked"
+                                : "Available"}
+
+                            </div>
+
+                          </div>
+
+
+                          {/* ======================================
+                              ROOM INFORMATION
+                          ====================================== */}
+
+                          <div className="room-info">
+
+
+                            <h2>
+                              {room.title}
+                            </h2>
+
+
+                            <p className="room-description">
+                              {room.desc}
+                            </p>
+
+
+                            {/* ==================================
+                                ROOM META
+                            ================================== */}
+
+                            <div className="room-meta">
+
+                              <span>
+                                🕙 {room.time}
+                              </span>
+
+
+                              <span>
+                                💰 {room.price}
+                              </span>
+
+                            </div>
+
+
+                            {/* ==================================
+                                VIEW DETAILS
+                            ================================== */}
+
+                            {!isUnavailable && (
+
+                              <button
+                                type="button"
+                                className="view-room-btn"
+                                onClick={(event) => {
+
+                                  event.stopPropagation();
+
+                                  handleViewDetails(room);
+
+                                }}
+                              >
+
+                                View Room Details
+
+                              </button>
+
+                            )}
+
+
+                            {/* ==================================
+                                BOOKED MESSAGE
+                            ================================== */}
+
+                            {isUnavailable && (
+
+                              <div className="booked-message">
+
+                                This room is already booked.
+
+                              </div>
+
+                            )}
+
+                          </div>
+
+                        </article>
+
+                      );
+
+                    })}
+
+                  </div>
+
+                )}
+
+              </div>
+
+
+              {/* =================================================
+                  SERVICES
+              ================================================= */}
+
+              <section className="services-section">
+
+
+                <div className="services-heading">
+
+                  <span className="home-section-label">
+                    EXPERIENCES
+                  </span>
+
+
+                  <h2>
+                    Our Services
+                  </h2>
+
+
+                  <p>
+                    Make your stay at Brezora
+                    even more memorable.
+                  </p>
+
+                </div>
+
+
+                <div className="services-grid">
+
+                  {services.map(
+                    (service, index) => (
+
+                      <article
+                        className="service-card"
+                        key={index}
+                      >
+
+
+                        {/* SERVICE IMAGE */}
+
+                        <div className="service-image">
+
+                          <img
+                            src={service.img}
+                            alt={service.title}
+                            draggable="false"
+                          />
+
+                        </div>
+
+
+                        {/* SERVICE INFORMATION */}
+
+                        <div className="service-info">
+
+                          <h3>
+                            {service.title}
+                          </h3>
+
+
+                          <p>
+                            {service.desc}
+                          </p>
+
+
+                          <div className="service-bottom">
+
+                            <strong>
+                              {service.price}
+                            </strong>
+
+
+                            <a
+                              href={`https://wa.me/918124582703?text=Hello%20Brezora,%20I%20am%20interested%20in%20${encodeURIComponent(
+                                service.text
+                              )}.`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="service-whatsapp"
+                              onClick={(event) =>
+                                event.stopPropagation()
+                              }
+                            >
+
+                              WhatsApp
+
+                            </a>
+
+                          </div>
+
+                        </div>
+
+                      </article>
+
+                    )
+                  )}
+
+                </div>
+
+              </section>
+
+
+              {/* =================================================
+                  VIDEO
+              ================================================= */}
+
+              <section className="home-video-section">
+
+                <Vedio />
+
+              </section>
+
+            </>
+
+          )}
+
         </div>
-      )}
 
-      {/* DETAILS */}
-      {selectedRoom && (
-        <RoomDetails
-          room={selectedRoom}
-          onBack={() => setSelectedRoom(null)}
-        />
-      )}
+      </section>
 
-      {/* SERVICES */}
-      <div className="services-wrapper">
-        {services.map((s, i) => (
-          <div className="service-cart" key={i}>
-            <img src={s.img} alt={s.title} className="service-img" />
-            <h3>{s.title}</h3>
-            <p>{s.desc}</p>
-            <div className="service-price">{s.price}</div>
-
-            <a
-              href={`https://wa.me/918124582703?text=Hello, I would like to book ${s.text}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp-btn"
-            >
-              WhatsApp
-            </a>
-          </div>
-        ))}
-      </div>
-
-      <Vedio />
-    </section>
+    </>
   );
-};
+}
+
 
 export default Home;

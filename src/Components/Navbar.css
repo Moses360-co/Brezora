@@ -1,13 +1,15 @@
-/* ==================================================
-   BREZORA NAVBAR
-   PREMIUM IPHONE GLASS STYLE
-================================================== */
-/* ==================================================
+@charset "UTF-8";
+/* =========================================================
+   BREZORA — NAVBAR
+   Premium iPhone Liquid Glass
+   Smooth • Clean • Responsive
+========================================================= */
+/* =========================================================
    VARIABLES
-================================================== */
-/* ==================================================
+========================================================= */
+/* =========================================================
    RESET
-================================================== */
+========================================================= */
 .navbar,
 .navbar *,
 .nav-menu,
@@ -15,9 +17,9 @@
   box-sizing: border-box;
 }
 
-/* ==================================================
+/* =========================================================
    NAVBAR
-================================================== */
+========================================================= */
 .navbar {
   position: fixed;
   top: 14px;
@@ -26,120 +28,165 @@
   width: calc(100% - 36px);
   max-width: 1200px;
   height: 68px;
-  padding: 7px 10px 7px 13px;
+  padding: 6px 10px 6px 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   z-index: 10000;
   border-radius: 24px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
   border: 1px solid rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(30px) saturate(180%);
   -webkit-backdrop-filter: blur(30px) saturate(180%);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.28), inset 0 -1px 1px rgba(255, 255, 255, 0.05);
-  transition: top 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.24), inset 0 1px 1px rgba(255, 255, 255, 0.28), inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+  transition: top 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
 }
 
-/* ==================================================
+/* =========================================================
    SCROLLED NAVBAR
-================================================== */
+========================================================= */
 .navbar.scrolled {
   top: 8px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.07));
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.38), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.075));
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.27);
 }
 
-/* ==================================================
+/* =========================================================
    BRAND
-================================================== */
+========================================================= */
 .brand {
+  min-width: 0;
+  max-width: 220px;
+  padding: 0;
+  margin: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
-  cursor: pointer;
+  gap: 9px;
   flex-shrink: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  font: inherit;
+  text-align: left;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  transition: opacity 0.3s ease;
 }
 
-/* ==================================================
+.brand:focus-visible {
+  outline: 2px solid rgba(20, 184, 166, 0.55);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+/* =========================================================
    LOGO GLASS
-================================================== */
+========================================================= */
 .logo-glass {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.22), 0 5px 18px rgba(0, 0, 0, 0.16);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.07));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.28), 0 5px 18px rgba(0, 0, 0, 0.14);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, background 0.45s ease;
 }
 
-.logo-glass:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.18), inset 0 1px 5px rgba(255, 255, 255, 0.3);
+.brand:hover .logo-glass {
+  transform: scale(1.045);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.09));
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.12), inset 0 1px 5px rgba(255, 255, 255, 0.32);
 }
 
+/* =========================================================
+   LOGO IMAGE
+========================================================= */
 .logo-glass img {
-  width: 33px;
-  height: 33px;
+  width: 42px;
+  height: 42px;
+  display: block;
+  -o-object-fit: contain;
+     object-fit: contain;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  -webkit-user-drag: none;
 }
 
-/* ==================================================
+/* =========================================================
    BRAND TEXT
-================================================== */
+========================================================= */
 .brand-text {
+  min-width: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   line-height: 1;
+  overflow: hidden;
 }
 
 .brand-text h2 {
   margin: 0;
   color: #111111 !important;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 750;
   letter-spacing: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .brand-text span {
   margin-top: 5px;
-  color: rgba(10, 10, 10, 0.72) !important;
+  color: rgba(10, 10, 10, 0.68) !important;
   font-size: 7px;
   font-weight: 500;
   letter-spacing: 3px;
+  white-space: nowrap;
 }
 
-/* ==================================================
+/* =========================================================
    DESKTOP MENU
-================================================== */
+========================================================= */
 .nav-menu {
+  min-width: 0;
   display: flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  gap: 4px;
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
 }
 
 .nav-menu li {
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 10px 14px;
+  padding: 10px 13px;
   border-radius: 14px;
   color: #111111 !important;
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;
-  transition: background 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+  transition: background 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 }
 
 .nav-menu li span {
@@ -149,22 +196,38 @@
 .nav-menu li svg {
   color: #111111 !important;
   font-size: 14px;
-  transition: color 0.25s ease, transform 0.25s ease;
+  transition: color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* =========================================================
+   MENU HOVER
+========================================================= */
 .nav-menu li:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.17);
   transform: translateY(-2px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18);
 }
 
 .nav-menu li:hover svg {
   color: #d4af37 !important;
-  transform: scale(1.15);
+  transform: scale(1.08);
 }
 
-/* ==================================================
+/* =========================================================
+   ACTIVE MENU
+========================================================= */
+.nav-menu li.active {
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.nav-menu li.active svg {
+  color: #d4af37 !important;
+}
+
+/* =========================================================
    RIGHT ACTIONS
-================================================== */
+========================================================= */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -172,12 +235,13 @@
   flex-shrink: 0;
 }
 
-/* ==================================================
+/* =========================================================
    GLASS ICON
-================================================== */
+========================================================= */
 .glass-icon {
   width: 40px;
   height: 40px;
+  flex: 0 0 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,27 +253,32 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease, box-shadow 0.35s ease;
 }
 
 .glass-icon svg {
   color: #111111 !important;
   font-size: 19px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .glass-icon:hover {
-  transform: translateY(-2px) scale(1.04);
+  transform: translateY(-2px) scale(1.035);
   background: rgba(255, 255, 255, 0.23);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.3);
 }
 
-/* ==================================================
+.glass-icon:hover svg {
+  transform: scale(1.06);
+}
+
+/* =========================================================
    CALL BUTTON
-================================================== */
+========================================================= */
 .glass-icon.call {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.95), rgba(212, 175, 55, 0.72));
-  border-color: rgba(255, 255, 255, 0.32);
-  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.25);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.88), rgba(212, 175, 55, 0.68));
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.17), inset 0 1px 1px rgba(255, 255, 255, 0.25);
 }
 
 .glass-icon.call svg {
@@ -217,16 +286,17 @@
 }
 
 .glass-icon.call:hover {
-  background: #d4af37;
-  box-shadow: 0 8px 28px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.94), rgba(212, 175, 55, 0.76));
+  box-shadow: 0 8px 28px rgba(212, 175, 55, 0.26), inset 0 1px 1px rgba(255, 255, 255, 0.28);
 }
 
-/* ==================================================
+/* =========================================================
    HAMBURGER BUTTON
-================================================== */
+========================================================= */
 .glass-menu-button {
   width: 40px;
   height: 40px;
+  flex: 0 0 40px;
   display: none;
   align-items: center;
   justify-content: center;
@@ -236,50 +306,64 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.06));
   backdrop-filter: blur(25px) saturate(180%);
   -webkit-backdrop-filter: blur(25px) saturate(180%);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.28), 0 5px 20px rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.28), 0 5px 20px rgba(0, 0, 0, 0.18);
   color: #111111 !important;
   cursor: pointer;
   outline: none;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
+.glass-menu-button:hover {
+  transform: scale(1.04);
+  background: rgba(255, 255, 255, 0.23);
+  box-shadow: 0 7px 22px rgba(0, 0, 0, 0.2);
+}
+
+.glass-menu-button:focus-visible {
+  outline: 2px solid rgba(20, 184, 166, 0.55);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   MENU ICON
+========================================================= */
 .menu-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #111111 !important;
   font-size: 17px;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .menu-icon svg {
   color: #111111 !important;
 }
 
-/* ==================================================
-   OPEN MENU BUTTON
-================================================== */
+/* =========================================================
+   ACTIVE MENU BUTTON
+========================================================= */
 .glass-menu-button.active {
   transform: rotate(90deg);
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.35), rgba(255, 255, 255, 0.08));
-  border-color: rgba(212, 175, 55, 0.5);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 6px 25px rgba(212, 175, 55, 0.2);
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(255, 255, 255, 0.08));
+  border-color: rgba(20, 184, 166, 0.3);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 6px 25px rgba(20, 184, 166, 0.13);
 }
 
-/* ==================================================
+/* =========================================================
    MOBILE BACKDROP
-================================================== */
+========================================================= */
 .mobile-backdrop {
   position: fixed;
   inset: 0;
   z-index: 9998;
-  background: rgba(0, 0, 0, 0.28);
+  background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .mobile-backdrop.show {
@@ -288,27 +372,62 @@
   pointer-events: auto;
 }
 
-/* ==================================================
+/* =========================================================
    MOBILE
-================================================== */
+========================================================= */
 @media (max-width: 700px) {
   .navbar {
     top: 10px;
     width: calc(100% - 18px);
     height: 62px;
-    padding: 6px 8px 6px 10px;
+    padding: 5px 7px;
     border-radius: 21px;
+    gap: 7px;
   }
-  /* MENU BUTTON */
+  /* =======================================
+     MOBILE BRAND
+  ======================================= */
+  .brand {
+    gap: 7px;
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+  }
+  .logo-glass {
+    width: 43px;
+    height: 43px;
+    flex-basis: 43px;
+  }
+  .logo-glass img {
+    width: 36px;
+    height: 36px;
+  }
+  .brand-text {
+    min-width: 0;
+  }
+  .brand-text h2 {
+    font-size: 14px;
+    letter-spacing: 1.7px;
+  }
+  .brand-text span {
+    font-size: 6px;
+    letter-spacing: 2.5px;
+  }
+  /* =======================================
+     MOBILE MENU BUTTON
+  ======================================= */
   .glass-menu-button {
     display: flex;
-    width: 39px;
-    height: 39px;
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
   }
-  /* MOBILE MENU */
+  /* =======================================
+     MOBILE MENU
+  ======================================= */
   .nav-menu {
     position: fixed;
-    top: 78px;
+    top: 76px;
     right: 0;
     width: 225px;
     padding: 9px;
@@ -316,27 +435,32 @@
     flex-direction: column;
     align-items: stretch;
     gap: 5px;
+    flex: none;
     border-radius: 22px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.07));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.21), rgba(255, 255, 255, 0.07));
     backdrop-filter: blur(35px) saturate(180%);
     -webkit-backdrop-filter: blur(35px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.42), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.25);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(-15px) scale(0.94);
+    transform: translateY(-12px) scale(0.96);
     transform-origin: top right;
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.35s ease;
   }
-  /* OPEN */
+  /* =======================================
+     OPEN MENU
+  ======================================= */
   .nav-menu.open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
     transform: translateY(0) scale(1);
   }
-  /* MOBILE ITEMS */
+  /* =======================================
+     MOBILE MENU ITEMS
+  ======================================= */
   .nav-menu li {
     width: 100%;
     padding: 13px 14px;
@@ -344,6 +468,7 @@
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.09);
     color: #111111 !important;
+    transition: background 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease;
   }
   .nav-menu li span {
     color: #111111 !important;
@@ -356,50 +481,50 @@
   .nav-menu li:hover {
     background: rgba(255, 255, 255, 0.16);
     transform: translateX(3px);
+    border-color: rgba(255, 255, 255, 0.18);
   }
   .nav-menu li:hover svg {
     color: #d4af37 !important;
   }
-  /* LOGO */
-  .logo-glass {
-    width: 39px;
-    height: 39px;
+  /* =======================================
+     ACTIONS
+  ======================================= */
+  .nav-actions {
+    gap: 5px;
   }
-  .logo-glass img {
-    width: 29px;
-    height: 29px;
-  }
-  /* BRAND */
-  .brand-text h2 {
-    font-size: 14px;
-  }
-  .brand-text span {
-    font-size: 6px;
-  }
-  /* ACTIONS */
   .glass-icon {
     width: 37px;
     height: 37px;
+    flex-basis: 37px;
   }
-  .glass-menu-button {
-    width: 37px;
-    height: 37px;
+  .glass-icon svg {
+    font-size: 17px;
   }
 }
-/* ==================================================
+/* =========================================================
    SMALL PHONES
-================================================== */
+========================================================= */
 @media (max-width: 430px) {
   .navbar {
     width: calc(100% - 12px);
     top: 8px;
+    height: 60px;
   }
-  .brand-text span {
-    display: none;
+  .logo-glass {
+    width: 41px;
+    height: 41px;
+    flex-basis: 41px;
+  }
+  .logo-glass img {
+    width: 34px;
+    height: 34px;
   }
   .brand-text h2 {
     font-size: 13px;
     letter-spacing: 1.5px;
+  }
+  .brand-text span {
+    display: none;
   }
   .nav-actions {
     gap: 4px;
@@ -408,10 +533,85 @@
   .glass-menu-button {
     width: 35px;
     height: 35px;
+    flex-basis: 35px;
+  }
+  .glass-icon svg {
+    font-size: 16px;
   }
   .nav-menu {
-    top: 73px;
-    right: 0;
+    top: 70px;
     width: 205px;
+  }
+}
+/* =========================================================
+   EXTRA SMALL
+========================================================= */
+@media (max-width: 350px) {
+  .navbar {
+    width: calc(100% - 8px);
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .logo-glass {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+  .logo-glass img {
+    width: 31px;
+    height: 31px;
+  }
+  .brand-text h2 {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+  }
+  .glass-icon,
+  .glass-menu-button {
+    width: 33px;
+    height: 33px;
+    flex-basis: 33px;
+  }
+  .nav-menu {
+    width: 195px;
+  }
+}
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+@media (hover: none) {
+  .brand:hover .logo-glass {
+    transform: none;
+  }
+  .glass-icon:hover {
+    transform: none;
+  }
+  .glass-icon:hover svg {
+    transform: none;
+  }
+  .glass-menu-button:hover {
+    transform: none;
+  }
+  .nav-menu li:hover {
+    transform: none;
+  }
+}
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .logo-glass,
+  .nav-menu,
+  .nav-menu li,
+  .glass-icon,
+  .glass-menu-button,
+  .menu-icon,
+  .mobile-backdrop {
+    transition: none;
+  }
+  .brand:hover .logo-glass,
+  .glass-icon:hover,
+  .glass-menu-button.active {
+    transform: none;
   }
 }/*# sourceMappingURL=Navbar.css.map */

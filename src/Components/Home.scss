@@ -1,118 +1,343 @@
+/* =========================================================
+   BREZORA — HOME SECTION
+   Luxury Liquid Glassmorphism
+   Responsive • Smooth Animation • Premium UI
+========================================================= */
+
 $primary: #0f766e;
+$primary-dark: #0b5f59;
 $primary-light: #14b8a6;
-$accent: #d4af37;
+
+$accent: #5eead4;
+$accent-gold: #d4af37;
 
 $text: #f8fafc;
+$text-soft: rgba(255, 255, 255, 0.86);
 $text-muted: rgba(255, 255, 255, 0.72);
 
-/* =========================================
-   MAIN CONTAINER
-========================================= */
+$glass-bg: rgba(255, 255, 255, 0.11);
+$glass-bg-hover: rgba(255, 255, 255, 0.15);
+$glass-border: rgba(255, 255, 255, 0.22);
+
+$ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+
+/* =========================================================
+   HOME MAIN
+========================================================= */
 
 .room-container {
-  min-height: 100vh;
-  padding: 100px 20px 50px;
-
   position: relative;
+  min-height: 100vh;
+  padding: 165px 20px 70px;
+
   overflow: hidden;
+  box-sizing: border-box;
 
   color: $text;
 
-  /* ONLINE BACKGROUND IMAGE */
   background-image:
     linear-gradient(
-      rgba(4, 18, 17, 0.65),
+      rgba(4, 18, 17, 0.66),
       rgba(4, 18, 17, 0.78)
     ),
-    url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2400&q=90");
+    var(--home-background);
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 
-  animation: fadeIn 0.8s ease;
+  animation: homeFadeIn 0.9s $ease-smooth both;
 
   &::before {
     content: "";
 
     position: absolute;
-    inset: 0;
 
-    background:
-      radial-gradient(
-        circle at 10% 15%,
-        rgba(20, 184, 166, 0.14),
-        transparent 30%
-      ),
-      radial-gradient(
-        circle at 90% 80%,
-        rgba(212, 175, 55, 0.10),
-        transparent 30%
-      );
+    width: 420px;
+    height: 420px;
+
+    top: -150px;
+    left: -150px;
+
+    border-radius: 50%;
+
+    background: rgba(20, 184, 166, 0.13);
+
+    filter: blur(110px);
 
     pointer-events: none;
+
     z-index: 0;
+
+    animation:
+      ambientGlow
+      10s
+      ease-in-out
+      infinite;
   }
 
-  > * {
-    position: relative;
-    z-index: 2;
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    width: 380px;
+    height: 380px;
+
+    right: -140px;
+    bottom: -140px;
+
+    border-radius: 50%;
+
+    background: rgba(212, 175, 55, 0.08);
+
+    filter: blur(110px);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation:
+      ambientGlowReverse
+      12s
+      ease-in-out
+      infinite;
   }
 }
 
-/* =========================================
-   ROOM + SERVICES GRID
-========================================= */
 
-.room-list,
-.services-wrapper {
+/* =========================================================
+   HOME OVERLAY
+========================================================= */
+
+.home-overlay {
+  position: relative;
+
+  z-index: 1;
+
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 20px 10px;
+
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.018);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+
+/* =========================================================
+   ROOM LIST
+========================================================= */
+
+.room-list {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
   max-width: 1200px;
 
-  margin: 30px auto 0;
+  margin: 0 auto;
 
-  display: grid;
+  display: flex;
+  flex-direction: column;
 
-  grid-template-columns:
-    repeat(auto-fit, minmax(260px, 1fr));
-
-  gap: 25px;
+  gap: 45px;
 }
 
-/* =========================================
-   GLASS CARD
-========================================= */
 
-.room-card,
-.service-cart {
+/* =========================================================
+   ROOM HEADING
+========================================================= */
+
+.room-heading {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  text-align: center;
+
+  animation:
+    headingReveal
+    0.9s
+    $ease-smooth
+    both;
+
+  .home-section-label {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: $accent;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    opacity: 0.95;
+  }
+
+  h1 {
+    margin: 0 0 16px;
+
+    color: #fff;
+
+    font-size:
+      clamp(2.2rem, 5vw, 3.5rem);
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    letter-spacing: -1.4px;
+
+    text-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.45);
+  }
+
+  p {
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    color: $text-muted;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+  }
+}
+
+
+/* =========================================================
+   ROOM SLIDER
+========================================================= */
+
+.rooms-slider {
   position: relative;
+
+  width: 100%;
 
   overflow: hidden;
 
-  border-radius: 26px;
+  padding: 8px 2px 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ROOM GRID
+========================================================= */
+
+.rooms-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 28px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   AUTO SLIDER MODE
+========================================================= */
+
+.rooms-grid.auto-slider {
+  display: flex;
+
+  gap: 28px;
+
+  overflow-x: auto;
+
+  scroll-behavior: smooth;
+
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+
+  padding-bottom: 5px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .room-card {
+    flex: 0 0 calc(
+      (100% - 56px) / 3
+    );
+
+    scroll-snap-align: center;
+  }
+}
+
+
+/* =========================================================
+   ROOM CARD
+========================================================= */
+
+.room-card {
+  position: relative;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  border-radius: 28px;
 
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.16),
+      rgba(255, 255, 255, 0.15),
       rgba(255, 255, 255, 0.045)
     );
 
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border:
+    1px solid $glass-border;
 
-  backdrop-filter: blur(25px) saturate(140%);
-  -webkit-backdrop-filter: blur(25px) saturate(140%);
+  backdrop-filter:
+    blur(25px)
+    saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(25px)
+    saturate(140%);
 
   box-shadow:
-    0 20px 45px rgba(0, 0, 0, 0.30),
-    inset 0 1px 1px rgba(255, 255, 255, 0.20);
+    0 25px 60px rgba(0, 0, 0, 0.30),
+    0 0 35px rgba(20, 184, 166, 0.045),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22);
 
-  animation: fadeUp 0.8s ease both;
+  box-sizing: border-box;
 
   transition:
-    transform 0.35s ease,
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
+    transform 0.45s $ease-smooth,
+    background 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+
+  animation:
+    cardReveal
+    0.8s
+    $ease-smooth
+    both;
+
+
+  /* Top glass reflection */
 
   &::before {
     content: "";
@@ -129,49 +354,128 @@ $text-muted: rgba(255, 255, 255, 0.72);
       linear-gradient(
         90deg,
         transparent,
-        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.85),
         transparent
       );
+
+    opacity: 0.75;
 
     z-index: 3;
   }
 
-  &:hover {
-    transform: translateY(-7px);
 
-    border-color: rgba(255, 255, 255, 0.35);
-
-    box-shadow:
-      0 28px 60px rgba(0, 0, 0, 0.40),
-      0 0 35px rgba(20, 184, 166, 0.12),
-      inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  }
-}
-
-/* =========================================
-   ROOM IMAGE
-========================================= */
-
-.room-image {
-  position: relative;
-
-  overflow: hidden;
-
-  height: 210px;
+  /* Internal glass shine */
 
   &::after {
     content: "";
 
     position: absolute;
-    inset: 0;
+
+    top: -80px;
+    left: -80px;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background:
+      rgba(255, 255, 255, 0.035);
+
+    filter: blur(45px);
+
+    pointer-events: none;
+
+    opacity: 0.7;
+
+    transition:
+      opacity 0.4s ease,
+      transform 0.5s $ease-smooth;
+  }
+
+
+  &:hover {
+    transform: translateY(-6px);
 
     background:
       linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.50),
-        transparent 55%
+        135deg,
+        rgba(255, 255, 255, 0.18),
+        rgba(255, 255, 255, 0.065)
       );
+
+    border-color:
+      rgba(255, 255, 255, 0.32);
+
+    box-shadow:
+      0 30px 70px rgba(0, 0, 0, 0.36),
+      0 0 35px rgba(20, 184, 166, 0.08),
+      inset 0 1px 1px rgba(255, 255, 255, 0.27);
+
+    &::after {
+      opacity: 1;
+
+      transform:
+        translate(30px, 30px);
+    }
   }
+
+
+  &:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.16s;
+  }
+
+  &:nth-child(4) {
+    animation-delay: 0.24s;
+  }
+
+  &:nth-child(5) {
+    animation-delay: 0.32s;
+  }
+
+  &:nth-child(6) {
+    animation-delay: 0.40s;
+  }
+}
+
+
+/* =========================================================
+   ACTIVE SLIDE
+========================================================= */
+
+.room-card.active-slide {
+  transform:
+    translateY(-4px)
+    scale(1.01);
+
+  border-color:
+    rgba(20, 184, 166, 0.38);
+
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.34),
+    0 0 40px rgba(20, 184, 166, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28);
+}
+
+
+/* =========================================================
+   ROOM IMAGE
+========================================================= */
+
+.room-image {
+  position: relative;
+
+  width: 100%;
+  height: 235px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255, 255, 255, 0.05);
 
   img {
     width: 100%;
@@ -182,220 +486,1256 @@ $text-muted: rgba(255, 255, 255, 0.72);
     object-fit: cover;
 
     transition:
-      transform 0.6s ease,
-      filter 0.6s ease;
+      transform 0.9s $ease-smooth,
+      filter 0.5s ease;
   }
 }
 
+
 .room-card:hover .room-image img {
-  transform: scale(1.07);
+  transform: scale(1.045);
 
-  filter: brightness(1.08);
+  filter: brightness(1.05);
 }
 
-/* =========================================
-   SERVICE IMAGE
-========================================= */
 
-.service-img {
+/* =========================================================
+   IMAGE PLACEHOLDER
+========================================================= */
+
+.room-image-placeholder {
   width: 100%;
-  height: 190px;
+  height: 100%;
 
-  display: block;
+  display: flex;
 
-  object-fit: cover;
+  align-items: center;
+  justify-content: center;
 
-  border-radius: 18px;
+  flex-direction: column;
 
-  transition:
-    transform 0.6s ease,
-    filter 0.6s ease;
-}
+  gap: 8px;
 
-.service-cart:hover .service-img {
-  transform: scale(1.05);
-
-  filter: brightness(1.06);
-}
-
-/* =========================================
-   ROOM CONTENT
-========================================= */
-
-.room-info {
-  padding: 20px;
-}
-
-.room-info h2 {
-  margin: 0 0 8px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 118, 110, 0.48),
+      rgba(20, 184, 166, 0.14)
+    );
 
   color: #fff;
 
-  font-size: 19px;
-  font-weight: 650;
+  span {
+    font-size: 42px;
 
-  letter-spacing: -0.3px;
+    filter:
+      drop-shadow(
+        0 8px 18px rgba(0, 0, 0, 0.25)
+      );
+  }
+
+  p {
+    margin: 0;
+
+    color:
+      rgba(255, 255, 255, 0.78);
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+  }
 }
 
-.room-info p {
-  margin: 0;
+
+/* =========================================================
+   AVAILABILITY BADGE
+========================================================= */
+
+.availability-badge {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  padding: 8px 12px;
+
+  border-radius: 50px;
+
+  color: #fff;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.3px;
+
+  backdrop-filter: blur(14px);
+
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.20);
+
+  z-index: 2;
+
+
+  &.available {
+    background:
+      rgba(20, 184, 166, 0.72);
+
+    border:
+      1px solid rgba(94, 234, 212, 0.40);
+  }
+
+
+  &.unavailable {
+    background:
+      rgba(212, 175, 55, 0.76);
+
+    border:
+      1px solid rgba(241, 212, 123, 0.40);
+  }
+}
+
+
+/* =========================================================
+   ROOM INFORMATION
+========================================================= */
+
+.room-info {
+  padding: 26px;
+
+  h2 {
+    margin: 0 0 12px;
+
+    color: #fff;
+
+    font-size: 20px;
+
+    font-weight: 650;
+
+    letter-spacing: -0.3px;
+  }
+}
+
+
+/* =========================================================
+   ROOM DESCRIPTION
+========================================================= */
+
+.room-description {
+  min-height: 50px;
+
+  margin: 0 0 18px;
 
   color: $text-muted;
 
   font-size: 13px;
 
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
-/* =========================================
-   SERVICE CARD
-========================================= */
 
-.service-cart {
-  padding: 15px;
+/* =========================================================
+   ROOM META
+========================================================= */
 
-  h2,
-  h3 {
-    margin: 15px 5px 7px;
+.room-meta {
+  display: flex;
 
-    color: #fff;
+  align-items: center;
 
-    font-size: 18px;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+
+  padding: 11px 13px;
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(14px);
+
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+
+  span {
+    color:
+      rgba(255, 255, 255, 0.72);
+
+    font-size: 12px;
   }
 
-  p {
-    margin: 0 5px;
 
-    color: $text-muted;
+  /* PRICE */
 
-    font-size: 13px;
+  span:last-child {
+    color: $accent;
 
-    line-height: 1.6;
+    font-weight: 700;
+
+    font-size: 14px;
+
+    text-shadow:
+      0 0 12px rgba(94, 234, 212, 0.25);
   }
 }
 
-/* =========================================
-   PRICE
-========================================= */
 
-.price,
-.service-price {
-  display: inline-block;
+/* =========================================================
+   PRIMARY BUTTONS
+========================================================= */
 
-  margin-top: 12px;
-
-  color: $accent;
-
-  font-size: 17px;
-
-  font-weight: 700;
-}
-
-/* =========================================
-   WHATSAPP / BOOK BUTTON
-========================================= */
-
-.whatsapp-btn {
-  display: block;
-
-  margin-top: 16px;
-
-  padding: 13px 16px;
+.view-room-btn,
+.service-whatsapp,
+.back-to-rooms-btn {
+  border:
+    1px solid rgba(255, 255, 255, 0.18);
 
   border-radius: 15px;
-
-  border: 1px solid rgba(255, 255, 255, 0.18);
 
   background:
     linear-gradient(
       135deg,
-      rgba(15, 118, 110, 0.95),
-      rgba(20, 184, 166, 0.90)
+      $primary,
+      $primary-light
     );
 
   color: #fff;
-
-  text-align: center;
-
-  text-decoration: none;
-
-  font-size: 14px;
-
-  font-weight: 600;
 
   box-shadow:
     0 10px 25px rgba(15, 118, 110, 0.25),
     inset 0 1px 1px rgba(255, 255, 255, 0.25);
 
-  transition: 0.3s ease;
+  transition:
+    transform 0.35s $ease-smooth,
+    box-shadow 0.35s ease,
+    filter 0.35s ease,
+    background 0.35s ease;
+}
+
+
+/* =========================================================
+   VIEW ROOM BUTTON
+========================================================= */
+
+.view-room-btn {
+  width: 100%;
+
+  padding: 14px 20px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 650;
+
+  outline: none;
+
 
   &:hover {
     transform: translateY(-2px);
 
-    filter: brightness(1.08);
+    filter: brightness(1.06);
+
+    box-shadow:
+      0 15px 32px rgba(15, 118, 110, 0.32),
+      inset 0 1px 1px rgba(255, 255, 255, 0.30);
   }
 
+
   &:active {
-    transform: scale(0.97);
+    transform: scale(0.975);
+  }
+
+
+  &:focus-visible {
+    box-shadow:
+      0 0 0 3px rgba(20, 184, 166, 0.20),
+      0 12px 28px rgba(15, 118, 110, 0.30);
   }
 }
 
-/* =========================================
-   MUSIC HINT
-========================================= */
 
-.music-hint {
+/* =========================================================
+   BACK TO ROOMS
+========================================================= */
+
+.back-to-rooms-wrapper {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  margin:
+    5px auto 20px;
+
+  animation:
+    backButtonReveal
+    0.7s
+    $ease-smooth
+    both;
+}
+
+
+.back-to-rooms-btn {
+  position: relative;
+
+  min-width: 220px;
+
+  padding: 14px 28px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.1px;
+
+  color: #fff;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 118, 110, 0.92),
+      rgba(20, 184, 166, 0.90)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.24);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.24),
+    0 0 25px rgba(20, 184, 166, 0.10),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(140%);
+
+  transition:
+    transform 0.4s $ease-smooth,
+    box-shadow 0.4s ease,
+    filter 0.4s ease,
+    border-color 0.4s ease;
+
+
+  /* Shine */
+
+  &::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 100%;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.20),
+        transparent
+      );
+
+    transform: skewX(-20deg);
+
+    transition:
+      left 0.7s $ease-smooth;
+  }
+
+
+  /* Inner highlight */
+
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 1px;
+
+    border-radius: 15px;
+
+    border:
+      1px solid rgba(255, 255, 255, 0.07);
+
+    pointer-events: none;
+  }
+
+
+  span,
+  svg {
+    position: relative;
+
+    z-index: 2;
+  }
+
+
+  &:hover {
+    transform:
+      translateY(-3px)
+      scale(1.015);
+
+    filter: brightness(1.06);
+
+    border-color:
+      rgba(255, 255, 255, 0.38);
+
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.30),
+      0 0 32px rgba(20, 184, 166, 0.18),
+      inset 0 1px 1px rgba(255, 255, 255, 0.32);
+
+    &::before {
+      left: 130%;
+    }
+  }
+
+
+  &:active {
+    transform:
+      translateY(0)
+      scale(0.97);
+  }
+
+
+  &:focus-visible {
+    outline: none;
+
+    box-shadow:
+      0 0 0 3px rgba(94, 234, 212, 0.22),
+      0 15px 35px rgba(0, 0, 0, 0.25);
+  }
+}
+
+
+/* =========================================================
+   BACK BUTTON ICON
+========================================================= */
+
+.back-to-rooms-btn svg {
+  font-size: 15px;
+
+  transition:
+    transform 0.35s $ease-smooth;
+}
+
+
+.back-to-rooms-btn:hover svg {
+  transform: translateX(-4px);
+}
+
+
+/* =========================================================
+   SLIDER CONTROLS
+========================================================= */
+
+.slider-controls {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 8px;
+}
+
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.28);
+
+  cursor: pointer;
+
+  transition:
+    width 0.35s $ease-smooth,
+    background 0.35s ease,
+    transform 0.35s $ease-smooth;
+
+
+  &:hover {
+    transform: scale(1.2);
+
+    background:
+      rgba(255, 255, 255, 0.60);
+  }
+
+
+  &.active {
+    width: 26px;
+
+    border-radius: 20px;
+
+    background:
+      linear-gradient(
+        90deg,
+        $primary,
+        $primary-light
+      );
+
+    box-shadow:
+      0 0 12px rgba(20, 184, 166, 0.30);
+  }
+}
+
+
+/* =========================================================
+   BOOKED MESSAGE
+========================================================= */
+
+.booked-message {
+  padding: 12px 14px;
+
+  border-radius: 13px;
+
+  color:
+    rgba(255, 255, 255, 0.70);
+
+  background:
+    rgba(212, 175, 55, 0.07);
+
+  border:
+    1px solid rgba(212, 175, 55, 0.17);
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  text-align: center;
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* =========================================================
+   UNAVAILABLE CARD
+========================================================= */
+
+.room-unavailable {
+  opacity: 0.84;
+
+  .room-image img {
+    filter:
+      grayscale(0.12)
+      brightness(0.72);
+  }
+
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+
+/* =========================================================
+   NO ROOMS
+========================================================= */
+
+.no-rooms {
+  max-width: 520px;
+
+  margin: 0 auto;
+
+  padding: 42px 30px;
+
+  text-align: center;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.045)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.22);
+
+  backdrop-filter:
+    blur(25px)
+    saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(25px)
+    saturate(140%);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.30),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22);
+
+
+  h2 {
+    margin: 12px 0 8px;
+
+    color: #fff;
+
+    font-size: 20px;
+  }
+
+
+  p {
+    margin: 0;
+
+    color: $text-muted;
+
+    font-size: 13px;
+  }
+}
+
+
+.no-rooms-icon {
+  font-size: 42px;
+}
+
+
+/* =========================================================
+   SERVICES SECTION
+========================================================= */
+
+.services-section {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 20px auto 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 35px;
+
+  animation:
+    sectionReveal
+    1s
+    $ease-smooth
+    both;
+}
+
+
+/* =========================================================
+   SERVICES HEADING
+========================================================= */
+
+.services-heading {
+  text-align: center;
+
+
+  .home-section-label {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: $accent;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+  }
+
+
+  h2 {
+    margin: 0 0 14px;
+
+    color: #fff;
+
+    font-size:
+      clamp(2rem, 4vw, 2.8rem);
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+
+    text-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.45);
+  }
+
+
+  p {
+    margin: 0 auto;
+
+    color: $text-muted;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+  }
+}
+
+
+/* =========================================================
+   SERVICES GRID
+========================================================= */
+
+.services-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 28px;
+}
+
+
+/* =========================================================
+   SERVICE CARD
+========================================================= */
+
+.service-card {
+  position: relative;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.045)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.22);
+
+  backdrop-filter:
+    blur(25px)
+    saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(25px)
+    saturate(140%);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.30),
+    0 0 35px rgba(20, 184, 166, 0.045),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22);
+
+  transition:
+    transform 0.45s $ease-smooth,
+    background 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+
+  animation:
+    cardReveal
+    0.85s
+    $ease-smooth
+    both;
+
+
+  &::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.85),
+        transparent
+      );
+
+    opacity: 0.75;
+
+    z-index: 3;
+  }
+
+
+  &:hover {
+    transform: translateY(-6px);
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.18),
+        rgba(255, 255, 255, 0.065)
+      );
+
+    border-color:
+      rgba(255, 255, 255, 0.32);
+
+    box-shadow:
+      0 30px 70px rgba(0, 0, 0, 0.36),
+      0 0 35px rgba(20, 184, 166, 0.08),
+      inset 0 1px 1px rgba(255, 255, 255, 0.27);
+  }
+}
+
+
+/* =========================================================
+   SERVICE IMAGE
+========================================================= */
+
+.service-image {
+  width: 100%;
+
+  height: 240px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+      transform 0.8s $ease-smooth,
+      filter 0.5s ease;
+  }
+}
+
+
+.service-card:hover .service-image img {
+  transform: scale(1.045);
+
+  filter: brightness(1.05);
+}
+
+
+/* =========================================================
+   SERVICE INFO
+========================================================= */
+
+.service-info {
+  padding: 25px;
+
+
+  h3 {
+    margin: 0 0 9px;
+
+    color: #fff;
+
+    font-size: 19px;
+
+    font-weight: 650;
+  }
+
+
+  p {
+    margin: 0 0 20px;
+
+    color: $text-muted;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+}
+
+
+/* =========================================================
+   SERVICE BOTTOM
+========================================================= */
+
+.service-bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+
+  strong {
+    color: $accent;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    text-shadow:
+      0 0 12px rgba(94, 234, 212, 0.25);
+  }
+}
+
+
+/* =========================================================
+   WHATSAPP BUTTON
+========================================================= */
+
+.service-whatsapp {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 17px;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  font-weight: 650;
+
+
+  &:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.06);
+
+    box-shadow:
+      0 15px 32px rgba(15, 118, 110, 0.32),
+      inset 0 1px 1px rgba(255, 255, 255, 0.30);
+  }
+
+
+  &:active {
+    transform: scale(0.975);
+  }
+}
+
+
+/* =========================================================
+   VIDEO SECTION
+========================================================= */
+
+.home-video-section {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 20px auto 0;
+
+  padding: 10px;
+
+  box-sizing: border-box;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.045)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.22);
+
+  backdrop-filter:
+    blur(25px)
+    saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(25px)
+    saturate(140%);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.30),
+    0 0 35px rgba(20, 184, 166, 0.045),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22);
+
+  overflow: hidden;
+
+  animation:
+    sectionReveal
+    1s
+    0.15s
+    $ease-smooth
+    both;
+}
+
+
+/* =========================================================
+   MUSIC CONTROL
+========================================================= */
+
+.music-control {
   position: fixed;
 
-  top: 90px;
+  top: 82px;
   left: 50%;
 
   transform: translateX(-50%);
 
   z-index: 999;
 
-  padding: 10px 18px;
+  display: flex;
 
-  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+
+  gap: 11px;
+
+  min-width: 185px;
+
+  padding: 10px 16px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.22);
+
+  border-radius: 50px;
 
   background:
-    rgba(255, 255, 255, 0.12);
+    rgba(255, 255, 255, 0.10);
 
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter:
+    blur(18px)
+    saturate(140%);
 
-  border: 1px solid rgba(255, 255, 255, 0.20);
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(140%);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18);
 
   color: #fff;
 
-  font-size: 14px;
+  font-family: inherit;
 
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 
-  transition: 0.3s ease;
+  animation:
+    musicPulse
+    3s
+    ease-in-out
+    infinite;
+
+  transition:
+    transform 0.35s $ease-smooth,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+
+  .music-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    font-size: 17px;
+
+    border-radius: 50%;
+
+    background:
+      rgba(20, 184, 166, 0.15);
+  }
+
+
+  .music-content {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    line-height: 1.15;
+  }
+
+
+  .music-title {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+  }
+
+
+  .music-subtitle {
+    margin-top: 3px;
+
+    color:
+      rgba(255, 255, 255, 0.62);
+
+    font-size: 9px;
+
+    font-weight: 500;
+  }
+
+
+  .music-bars {
+    display: flex;
+
+    align-items: center;
+
+    gap: 3px;
+
+    height: 22px;
+
+    margin-left: 2px;
+  }
+
+
+  .music-bars i {
+    display: block;
+
+    width: 3px;
+    height: 7px;
+
+    border-radius: 5px;
+
+    background: $accent;
+
+    opacity: 0.65;
+
+    animation:
+      musicBars
+      0.9s
+      ease-in-out
+      infinite;
+  }
+
+
+  .music-bars i:nth-child(2) {
+    height: 14px;
+
+    animation-delay: 0.15s;
+  }
+
+
+  .music-bars i:nth-child(3) {
+    height: 18px;
+
+    animation-delay: 0.3s;
+  }
+
+
+  .music-bars i:nth-child(4) {
+    height: 11px;
+
+    animation-delay: 0.45s;
+  }
+
 
   &:hover {
     transform:
       translateX(-50%)
-      translateY(-2px)
-      scale(1.03);
-  }
+      translateY(-2px);
 
-  &.active {
     background:
-      rgba(212, 175, 55, 0.16);
+      rgba(20, 184, 166, 0.14);
 
     border-color:
-      rgba(212, 175, 55, 0.45);
+      rgba(20, 184, 166, 0.40);
+
+    box-shadow:
+      0 15px 40px rgba(0, 0, 0, 0.28),
+      0 0 25px rgba(20, 184, 166, 0.12),
+      inset 0 1px 1px rgba(255, 255, 255, 0.22);
+  }
+
+
+  &:active {
+    transform:
+      translateX(-50%)
+      scale(0.97);
+  }
+
+
+  &.active {
+    color: $accent;
+
+    background:
+      rgba(20, 184, 166, 0.13);
+
+    border-color:
+      rgba(20, 184, 166, 0.38);
+
+    animation: none;
+  }
+
+
+  &:focus-visible {
+    outline: none;
+
+    box-shadow:
+      0 0 0 3px rgba(20, 184, 166, 0.20),
+      0 15px 35px rgba(0, 0, 0, 0.25);
   }
 }
 
-/* =========================================
+
+/* =========================================================
    ANIMATIONS
-========================================= */
+========================================================= */
 
-@keyframes fadeIn {
+@keyframes homeFadeIn {
   from {
     opacity: 0;
   }
@@ -405,117 +1745,796 @@ $text-muted: rgba(255, 255, 255, 0.72);
   }
 }
 
-@keyframes fadeUp {
+
+@keyframes headingReveal {
   from {
     opacity: 0;
 
-    transform: translateY(35px);
+    transform:
+      translateY(-24px);
   }
 
   to {
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+      translateY(0);
   }
 }
 
-/* =========================================
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(22px)
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+@keyframes backButtonReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+@keyframes ambientGlow {
+  0%,
+  100% {
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(25px, 20px)
+      scale(1.08);
+  }
+}
+
+
+@keyframes ambientGlowReverse {
+  0%,
+  100% {
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(-25px, -20px)
+      scale(1.08);
+  }
+}
+
+
+@keyframes musicPulse {
+  0%,
+  100% {
+    transform:
+      translateX(-50%)
+      translateY(0);
+
+    opacity: 0.82;
+  }
+
+  50% {
+    transform:
+      translateX(-50%)
+      translateY(-2px);
+
+    opacity: 1;
+  }
+}
+
+
+@keyframes musicBars {
+  0%,
+  100% {
+    transform: scaleY(0.7);
+
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: scaleY(1.15);
+
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
    TABLET
-========================================= */
+========================================================= */
 
 @media (max-width: 1024px) {
+
   .room-container {
-    padding: 90px 18px 40px;
+    padding:
+      90px 18px 55px;
 
-    background-attachment: scroll;
+    background-attachment:
+      scroll;
   }
 
-  .room-list,
-  .services-wrapper {
-    gap: 20px;
-  }
-}
 
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 768px) {
-  .room-container {
-    padding: 85px 12px 35px;
-
-    background-position: center;
-    background-attachment: scroll;
+  .home-overlay {
+    padding:
+      18px 8px;
   }
 
-  .room-list,
-  .services-wrapper {
-    grid-template-columns: 1fr;
 
-    gap: 18px;
+  .rooms-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
 
-    margin-top: 25px;
+    gap: 22px;
   }
 
-  .room-image {
-    height: 200px;
+
+  .rooms-grid.auto-slider {
+    .room-card {
+      flex: 0 0
+        calc(
+          (100% - 22px) / 2
+        );
+    }
   }
 
-  .service-img {
-    height: 180px;
+
+  .services-grid {
+    gap: 22px;
   }
 
-  .music-hint {
-    top: 75px;
-
-    padding: 8px 14px;
-
-    font-size: 12px;
-  }
-}
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media (max-width: 480px) {
-  .room-container {
-    padding: 80px 10px 30px;
-  }
-
-  .room-list,
-  .services-wrapper {
-    gap: 16px;
-  }
-
-  .room-image {
-    height: 180px;
-  }
-
-  .service-img {
-    height: 165px;
-  }
 
   .room-info {
-    padding: 18px;
+    padding: 25px;
   }
+
+
+  .room-image {
+    height: 220px;
+  }
+
+
+  .service-image {
+    height: 225px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .room-container {
+    min-height: auto;
+
+    padding:
+      85px 12px 45px;
+
+    background-position:
+      center;
+
+    background-attachment:
+      scroll;
+  }
+
+
+  .home-overlay {
+    min-height: auto;
+
+    padding:
+      15px 5px;
+  }
+
+
+  .room-list {
+    gap: 32px;
+  }
+
+
+  .room-heading {
+
+    .home-section-label {
+      font-size: 10px;
+
+      letter-spacing: 2.5px;
+    }
+
+
+    h1 {
+      font-size:
+        clamp(2rem, 8vw, 2.7rem);
+
+      letter-spacing:
+        -1px;
+    }
+
+
+    p {
+      font-size: 13px;
+
+      line-height: 1.7;
+    }
+  }
+
+
+  .rooms-grid {
+    grid-template-columns:
+      1fr;
+
+    gap: 18px;
+  }
+
+
+  .rooms-grid.auto-slider {
+    gap: 14px;
+
+    padding-left: 2px;
+    padding-right: 2px;
+
+    .room-card {
+      flex:
+        0 0 88%;
+    }
+  }
+
+
+  .room-card {
+    border-radius:
+      24px;
+  }
+
+
+  .room-image {
+    height:
+      230px;
+  }
+
+
+  .room-info {
+    padding:
+      27px;
+  }
+
+
+  .room-card:hover {
+    transform:
+      translateY(-4px);
+  }
+
+
+  .active-slide {
+    transform:
+      translateY(-2px)
+      scale(1);
+  }
+
+
+  .back-to-rooms-wrapper {
+    margin-top:
+      0;
+
+    margin-bottom:
+      15px;
+  }
+
+
+  .back-to-rooms-btn {
+    width:
+      min(100%, 320px);
+
+    min-width:
+      0;
+
+    padding:
+      14px 22px;
+
+    border-radius:
+      15px;
+
+    font-size:
+      13px;
+  }
+
+
+  .slider-controls {
+    margin-top:
+      5px;
+  }
+
+
+  .services-section {
+    gap:
+      26px;
+
+    margin-top:
+      10px;
+  }
+
+
+  .services-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      18px;
+  }
+
+
+  .service-card {
+    border-radius:
+      24px;
+  }
+
+
+  .service-card:hover {
+    transform:
+      translateY(-4px);
+  }
+
+
+  .service-image {
+    height:
+      225px;
+  }
+
+
+  .home-video-section {
+    margin-top:
+      10px;
+
+    border-radius:
+      24px;
+  }
+
+
+  .music-control {
+    position: fixed;
+
+    top: 72px;
+
+    left: 50%;
+
+    transform:
+      translateX(-50%);
+
+    min-width:
+      165px;
+
+    padding:
+      9px 13px;
+
+    gap:
+      8px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .room-container {
+    padding:
+      145px 10px 32px;
+  }
+
+
+  .home-overlay {
+    padding:
+      12px 4px;
+  }
+
+
+  .room-heading {
+
+    .home-section-label {
+      margin-bottom:
+        10px;
+
+      font-size:
+        9.5px;
+    }
+
+
+    h1 {
+      font-size:
+        1.95rem;
+
+      margin-bottom:
+        13px;
+    }
+
+
+    p {
+      font-size:
+        12.5px;
+    }
+  }
+
+
+  .rooms-grid.auto-slider {
+
+    .room-card {
+      flex:
+        0 0 91%;
+    }
+  }
+
+
+  .room-image {
+    height:
+      205px;
+  }
+
+
+  .room-info {
+    padding:
+      22px 18px;
+  }
+
 
   .room-info h2 {
-    font-size: 17px;
+    font-size:
+      18px;
   }
 
-  .room-info p {
-    font-size: 12.5px;
+
+  .room-description {
+    font-size:
+      12.5px;
+
+    line-height:
+      1.75;
   }
 
-  .price,
-  .service-price {
-    font-size: 16px;
+
+  .room-meta {
+    padding:
+      10px 11px;
+
+    span {
+      font-size:
+        11.5px;
+    }
+
+    span:last-child {
+      font-size:
+        13px;
+    }
   }
 
-  .whatsapp-btn {
-    padding: 12px;
 
-    font-size: 13px;
+  .view-room-btn {
+    padding:
+      13px;
+
+    border-radius:
+      13px;
+
+    font-size:
+      13px;
+  }
+
+
+  .back-to-rooms-btn {
+    width:
+      92%;
+
+    padding:
+      13px 18px;
+
+    border-radius:
+      14px;
+
+    font-size:
+      13px;
+  }
+
+
+  .slider-dot {
+    width:
+      7px;
+
+    height:
+      7px;
+
+    &.active {
+      width:
+        22px;
+    }
+  }
+
+
+  .services-heading {
+
+    h2 {
+      font-size:
+        1.95rem;
+    }
+
+
+    p {
+      font-size:
+        12.5px;
+    }
+  }
+
+
+  .service-image {
+    height:
+      200px;
+  }
+
+
+  .service-info {
+    padding:
+      22px 18px;
+
+
+    h3 {
+      font-size:
+        18px;
+    }
+
+
+    p {
+      font-size:
+        12.5px;
+    }
+  }
+
+
+  .service-bottom {
+
+    strong {
+      font-size:
+        15px;
+    }
+  }
+
+
+  .service-whatsapp {
+    padding:
+      10px 14px;
+
+    border-radius:
+      13px;
+
+    font-size:
+      12px;
+  }
+
+
+  .home-video-section {
+    border-radius:
+      22px;
+
+    padding:
+      6px;
+  }
+
+
+  .music-control {
+    top:
+      72px;
+
+    min-width:
+      150px;
+
+    padding:
+      8px 11px;
+  }
+
+
+  .music-control .music-icon {
+    width:
+      27px;
+
+    height:
+      27px;
+
+    font-size:
+      15px;
+  }
+
+
+  .music-control .music-title {
+    font-size:
+      11px;
+  }
+
+
+  .music-control .music-subtitle {
+    font-size:
+      8px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+========================================================= */
+
+@media (max-width: 350px) {
+
+  .room-container {
+    padding:
+      70px 8px 28px;
+  }
+
+
+  .room-info {
+    padding:
+      19px 15px;
+  }
+
+
+  .room-heading h1 {
+    font-size:
+      1.75rem;
+  }
+
+
+  .room-heading p {
+    font-size:
+      12px;
+  }
+
+
+  .room-image {
+    height:
+      185px;
+  }
+
+
+  .rooms-grid.auto-slider {
+
+    .room-card {
+      flex:
+        0 0 94%;
+    }
+  }
+
+
+  .service-image {
+    height:
+      180px;
+  }
+
+
+  .service-info {
+    padding:
+      19px 15px;
+  }
+
+
+  .service-bottom {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      12px;
+  }
+
+
+  .service-whatsapp {
+    width:
+      100%;
+
+    box-sizing:
+      border-box;
+  }
+
+
+  .back-to-rooms-btn {
+    width:
+      96%;
+
+    padding:
+      12px 15px;
+
+    font-size:
+      12px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .room-container,
+  .room-heading,
+  .services-section,
+  .home-video-section,
+  .room-card,
+  .service-card,
+  .music-control,
+  .back-to-rooms-wrapper,
+  .room-container::before,
+  .room-container::after {
+    animation:
+      none !important;
+  }
+
+
+  .room-card,
+  .service-card,
+  .room-image img,
+  .service-image img,
+  .view-room-btn,
+  .service-whatsapp,
+  .back-to-rooms-btn,
+  .slider-dot,
+  .music-control {
+    transition:
+      none !important;
+  }
+
+
+  .music-control .music-bars i {
+    animation:
+      none !important;
+  }
+
+
+  .rooms-grid.auto-slider {
+    scroll-behavior:
+      auto;
   }
 }

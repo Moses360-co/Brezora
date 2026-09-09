@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import "./Navbar.scss";
 import BrezoraLogo from "./BrezoraLogo.png";
 
@@ -13,54 +15,78 @@ import {
 
 import { CiLocationOn } from "react-icons/ci";
 
-function NavBar({ setPage }) {
+function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  /* ================================
-     SCROLL DETECTION
-  ================================= */
+  // ========================================
+  // SCROLL EFFECT
+  // ========================================
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  /* ================================
-     NAVIGATION
-  ================================= */
+  // ========================================
+  // CLOSE MENU WHEN PAGE CHANGES
+  // ========================================
 
-  const navigate = (page) => {
-    if (setPage) {
-      setPage(page);
-    }
-
+  useEffect(() => {
     setOpen(false);
-
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+  }, [location.pathname]);
+
+  // ========================================
+  // NAVIGATION
+  // ========================================
+
+  const handleNavigation = (path) => {
+    setOpen(false);
+
+    if (location.pathname === path) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      return;
+    }
+
+    navigate(path);
   };
 
-  /* ================================
-     MENU TOGGLE
-  ================================= */
+  // ========================================
+  // CHECK ACTIVE PAGE
+  // ========================================
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
+  // ========================================
+  // MOBILE MENU
+  // ========================================
 
   const toggleMenu = () => {
     setOpen((previous) => !previous);
   };
-
-  /* ================================
-     CLOSE MENU
-  ================================= */
 
   const closeMenu = () => {
     setOpen(false);
@@ -68,30 +94,35 @@ function NavBar({ setPage }) {
 
   return (
     <>
-      {/* ================================
+      {/* ========================================
           MOBILE BACKDROP
-      ================================= */}
+      ======================================== */}
 
       <div
-        className={`mobile-backdrop ${open ? "show" : ""}`}
+        className={`mobile-backdrop ${
+          open ? "show" : ""
+        }`}
         onClick={closeMenu}
       />
 
-      {/* ================================
+      {/* ========================================
           NAVBAR
-      ================================= */}
+      ======================================== */}
 
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+      <nav
+        className={`navbar ${
+          scrolled ? "scrolled" : ""
+        }`}
+      >
+        {/* ========================================
+            LOGO
+        ======================================== */}
 
-        {/* ================================
-            BRAND
-        ================================= */}
-
-        <div
+        <button
+          type="button"
           className="brand"
-          onClick={() => navigate("home")}
-          role="button"
-          tabIndex={0}
+          onClick={() => handleNavigation("/")}
+          aria-label="Go to Brezora Home"
         >
           <div className="logo-glass">
             <img
@@ -104,50 +135,84 @@ function NavBar({ setPage }) {
             <h2>BREZORA</h2>
             <span>COTTAGE</span>
           </div>
-        </div>
+        </button>
 
-        {/* ================================
+        {/* ========================================
             NAVIGATION MENU
-        ================================= */}
+        ======================================== */}
 
-        <ul className={`nav-menu ${open ? "open" : ""}`}>
+        <ul
+          className={`nav-menu ${
+            open ? "open" : ""
+          }`}
+        >
+          {/* HOME */}
 
-          <li onClick={() => navigate("home")}>
+          <li
+            className={isActive("/") ? "active" : ""}
+            onClick={() => handleNavigation("/")}
+          >
             <FaHome />
             <span>Home</span>
           </li>
 
-          <li onClick={() => navigate("about")}>
+          {/* ABOUT */}
+
+          <li
+            className={
+              isActive("/about") ? "active" : ""
+            }
+            onClick={() =>
+              handleNavigation("/about")
+            }
+          >
             <FaInfoCircle />
             <span>About</span>
           </li>
 
-          <li onClick={() => navigate("services")}>
+          {/* SERVICES */}
+
+          <li
+            className={
+              isActive("/services") ? "active" : ""
+            }
+            onClick={() =>
+              handleNavigation("/services")
+            }
+          >
             <FaConciergeBell />
             <span>Services</span>
           </li>
 
-          <li onClick={() => navigate("contact")}>
+          {/* CONTACT */}
+
+          <li
+            className={
+              isActive("/contact") ? "active" : ""
+            }
+            onClick={() =>
+              handleNavigation("/contact")
+            }
+          >
             <FaPhoneVolume />
             <span>Contact</span>
           </li>
-
         </ul>
 
-        {/* ================================
+        {/* ========================================
             RIGHT ACTIONS
-        ================================= */}
+        ======================================== */}
 
         <div className="nav-actions">
-
           {/* LOCATION */}
 
           <a
-            href="https://www.google.com/maps/dir/9.9248537,78.1450406/10.2657783,77.487645/@10.102707,77.4903489,10z/data=!3m1!4b1!4m5!4m4!1m1!4e1!1m0!3e0?hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+            href="https://www.google.com/maps/dir/9.9248537,78.1450406/10.2657783,77.487645/"
             target="_blank"
             rel="noopener noreferrer"
             className="glass-icon"
-            aria-label="Location"
+            aria-label="Brezora Location"
+            onClick={() => setOpen(false)}
           >
             <CiLocationOn />
           </a>
@@ -155,9 +220,10 @@ function NavBar({ setPage }) {
           {/* CALL */}
 
           <a
-            href="tel:+918124582703"
+            href="tel:+916383254176"
             className="glass-icon call"
             aria-label="Call Brezora"
+            onClick={() => setOpen(false)}
           >
             <FaPhoneVolume />
           </a>
@@ -170,19 +236,17 @@ function NavBar({ setPage }) {
               open ? "active" : ""
             }`}
             onClick={toggleMenu}
-            aria-label="Toggle navigation"
+            aria-label="Toggle navigation menu"
             aria-expanded={open}
           >
             <span className="menu-icon">
               {open ? <FaTimes /> : <FaBars />}
             </span>
           </button>
-
         </div>
-
       </nav>
     </>
   );
 }
 
-export default NavBar;
+export default Navbar;

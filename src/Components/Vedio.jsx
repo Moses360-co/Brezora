@@ -1,13 +1,10 @@
 import React from "react";
 import "./Vedio.css";
-import Vedio1 from "./Vedios/Vedio-1.mp4";
-import Vedio2 from "./Vedios/Vedio-2.mp4";
-import Vedio3 from "./Vedios/Vedio-3.mp4";
 
 const videos = [
-  Vedio1,
-  Vedio2,
-  Vedio3,
+  "https://res.cloudinary.com/dxjv0gq3k/video/upload/v1697040911/vid1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1.mp4",
+  "https://res.cloudinary.com/dxjv0gq3k/video/upload/v1697040911/vid2_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1.mp4",
+  "https://youtu.be/5BT6iKDlUgQ?si=n-4eruRl8FeL8Vo3"
 ];
 
 const Vedio = () => {
